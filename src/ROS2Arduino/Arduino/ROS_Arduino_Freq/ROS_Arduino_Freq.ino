@@ -23,4 +23,5 @@ void loop() {
   loop_var.data = loop_no ;
   Freq_pub.publish(&loop_var) ;
   FT_node.spinOnce();
+  delay(10) ;
 }
