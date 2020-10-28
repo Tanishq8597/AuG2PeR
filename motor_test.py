@@ -9,13 +9,12 @@ odrive_board = odrive.find_any()
 
 
 # Getting motor params
-A0 = odrive_board.axis0
+A0 = odrive_board.axis1
 M0 = A0.motor
 M0_enc = A0.encoder
-M0_speed = A0.controller.input_vel
 
 # sets control mode
-A0.controller.config.control_mode = CONTROL_MODE_POSITION_CONTROL
+A0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
 # Set state to close loop control
 A0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 error = 0
