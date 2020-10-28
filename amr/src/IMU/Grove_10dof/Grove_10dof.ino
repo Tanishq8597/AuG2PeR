@@ -76,7 +76,7 @@ void loop() {
   IMU_msg.gyro_val[0] = Gxyz[0] ;
   IMU_msg.gyro_val[1] = Gxyz[1] ;
   IMU_msg.gyro_val[2] = Gxyz[2] ;
-  
+
   IMU_msg.accel_val[0]= Axyz[0] ;
   IMU_msg.accel_val[0]= Axyz[0] ;
   IMU_msg.accel_val[0]= Axyz[0] ;
