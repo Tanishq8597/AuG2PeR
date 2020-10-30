@@ -14,8 +14,10 @@ max_velocity = 2 #m/s
 def Node_Setup():
     rospy.init_node("Odrive",anonymous=True)
     rospy.Subscriber("joy",Joy,JoystickCB)
-    # Odrive_Setup()
+    # print(W_L,W_R)
     rospy.spin()
+    # Odrive_Setup()
+    # rate = rospy.Rate(100)
 
 # def Odrive_Setup():
 
@@ -23,45 +25,62 @@ def Node_Setup():
 def JoystickCB(msg):
     throtle = msg.axes[1]
     yaw = msg.axes[3]
-    diff_drive(throtle,yaw)
+    e_stop = msg.buttons[0] 
+    if ~e_stop:
+        diff_drive(throtle,yaw)
+    else:
+        motor_stop()
     # rospy.loginfo("throtle_reading = %f \nyaw_reading = %f\n"%(throtle,yaw))
 
 
 def diff_drive(throtle,yaw):
-    angular_velocity = throtle*max_velocity / (0.5*diameter)
+    angular_velocity = -0.1*throtle*max_velocity / (0.5*diameter)
     # print("Velocity is %f turns/s"%angular_velocity)
-    if yaw == 1:
-        # turn left in place
-        w_L = -yaw*angular_velocity
-        w_R = yaw*angular_velocity
-        # print("Turn left in place")
-    elif yaw == -1:
-        # turn right in place
-        w_L = yaw*angular_velocity
-        w_R = -yaw*angular_velocity
-        # print("Turn right in place")
-    elif yaw > 0.0:
-        # turn left
-        w_L = yaw*angular_velocity
-        w_R = (1+yaw)*angular_velocity
-        # print("Turning left")
-    elif yaw < 0.0 and yaw > -1.0:
-        # turn right
-        w_L = (1-yaw)*angular_velocity
-        w_R = (-yaw)*angular_velocity
-        # print("Turning right")
-    else:
-        w_L = angular_velocity
-        w_R = w_L
+    if angular_velocity != 0 :
+        if yaw == 1:
+            # turn left in place
+            w_L = -yaw*angular_velocity
+            w_R = yaw*angular_velocity
+            # print("Turn left in place")
+        elif yaw == -1:
+            # turn right in place
+            w_L = -yaw*angular_velocity
+            w_R = yaw*angular_velocity
+            # print("Turn right in place")
+        elif yaw > 0.0:
+            # turn left
+            w_L = yaw*angular_velocity
+            w_R = (1+yaw)*angular_velocity
+            # print("Turning left")
+        elif yaw < 0.0 and yaw > -1.0:
+            # turn right
+            w_L = (1-yaw)*angular_velocity
+            w_R = (-yaw)*angular_velocity
+            # print("Turning right")
+        else:
+            w_L = angular_velocity
+            w_R = w_L
+            
+        if w_L != w_R:
+            r = diameter*(w_L+w_R)/(w_L-w_R)
+            print("Radius of turn = %f"%r)
         
-    if w_L != w_R:
-        r = diameter*(w_L+w_R)/(w_L-w_R)
-        print("Radius of turn = %f"%r)
+        a0_left.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+        a1_right.requested_state= AXIS_STATE_CLOSED_LOOP_CONTROL
+        a0_left.controller.input_vel = w_L
+        a1_right.controller.input_vel = -w_R  
+        # time.sleep(0.5)
     else:
-        print("Going straight")
+        print("No throttle")
+        motor_stop()
+        
+def motor_stop():
+    print("Stop motor")
+    a0_left.controller.input_vel = 0
+    a1_right.controller.input_vel = 0
+    a0_left.requested_state = AXIS_STATE_IDLE
+    a1_right.requested_state= AXIS_STATE_IDLE
 
-    a0_left.controller.input_vel = w_L
-    a1_right.controller.input_vel = w_L
 
 if __name__ == '__main__': 
     try:    
@@ -70,12 +89,13 @@ if __name__ == '__main__':
         a0_left = od_board.axis0
         a1_right = od_board.axis1
 
-        left_motor = a0_left.motor
-        left_encoder = a0_left.encoder
+        # left_motor = a0_left.motor
+        # left_encoder = a0_left.encoder
 
-        right_motor = a1_right.motor
-        right_encoder = a1_right.encoder
+        # right_motor = a1_right.motor
+        # right_encoder = a1_right.encoder
         Node_Setup()
+        # rospy.Rate(100).sleep()
         # rospy.Rate(10000).sleep()
     #     while not rospy.is_shutdown(): rate.sleep()
     except rospy.ROSInterruptException:
