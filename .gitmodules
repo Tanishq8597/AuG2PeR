@@ -1,3 +1,9 @@
 [submodule "Arduino_Scripts/libraries/MPU9250"]
 	path = Arduino_Scripts/libraries/MPU9250
 	url = https://github.com/bolderflight/MPU9250
+[submodule "rplidar_ros"]
+	path = rplidar_ros
+	url = https://github.com/robopeak/rplidar_ros
+[submodule "ros_decawave"]
+	path = ros_decawave
+	url = https://github.com/verlab/ros_decawave
