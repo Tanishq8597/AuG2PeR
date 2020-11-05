@@ -10,13 +10,13 @@ time_pub = rospy.Publisher("Propogation_Time",Header,queue_size=2)
 
 def IMU_CB(data):
     current_time = rospy.get_rostime() 
-    log_time.stamp.secs = current_time.secs - data.header.stamp.secs
-    log_time.stamp.nsecs= current_time.nsecs - data.header.stamp.nsecs
+    log_time.stamp.secs = current_time.secs
+    log_time.stamp.nsecs= current_time.nsecs 
     # rospy.loginfo("%i sec %i nsec",log_time.stamp.secs-data.header.stamp.secs,log_time.stamp.nsecs-data.header.stamp.nsecs)
     time_pub.publish(log_time)
 
 rospy.Subscriber("/IMU",grove_10dof,IMU_CB)
-rate=rospy.Rate(100)
+rospy.spin()
 
 if __name__ == '__main__':
     try:
