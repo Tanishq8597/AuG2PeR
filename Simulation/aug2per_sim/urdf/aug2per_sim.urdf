@@ -1,0 +1,1281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="aug2per_sim">
+  <link
+    name="Body">
+    <inertial>
+      <origin
+        xyz="-0.00633088476349453 -0.0286115109761063 -0.0560587298168129"
+        rpy="0 0 0" />
+      <mass
+        value="9.0807262930533" />
+      <inertia
+        ixx="0.19010482202133"
+        ixy="4.64848822903405E-06"
+        ixz="-7.18169581128969E-12"
+        iyy="0.186710328270302"
+        iyz="-2.10164323656596E-11"
+        izz="0.36364142361196" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="IMU">
+    <inertial>
+      <origin
+        xyz="0.0482302704032378 0.000506568217696346 0.00131578833444165"
+        rpy="0 0 0" />
+      <mass
+        value="0.0014024325913026" />
+      <inertia
+        ixx="4.31149015991424E-08"
+        ixy="-7.89268574426955E-12"
+        ixz="8.36590400000308E-12"
+        iyy="1.56221337317265E-07"
+        iyz="-5.43645548833775E-24"
+        izz="1.97404863548002E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/IMU.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0.376470588235294 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/IMU.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="IMU"
+    type="fixed">
+    <origin
+      xyz="-0.085598990312745 -0.0289195275889518 -0.0580000076141442"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="IMU" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="UWB">
+    <inertial>
+      <origin
+        xyz="-0.0130765164022137 -0.000417565196823455 -0.00237860248282659"
+        rpy="0 0 0" />
+      <mass
+        value="0.0140507300864503" />
+      <inertia
+        ixx="4.70296209620236E-06"
+        ixy="1.15447401242948E-08"
+        ixz="9.08965468868352E-07"
+        iyy="1.36291743695964E-05"
+        iyz="-9.7351300716932E-09"
+        izz="1.74908774957471E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/UWB.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/UWB.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UWB"
+    type="fixed">
+    <origin
+      xyz="-0.133778420050809 -0.246987118886768 -0.0432000076141442"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="UWB" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Lidar_Base">
+    <inertial>
+      <origin
+        xyz="-0.15 1.11022302462516E-16 -0.00150000000000022"
+        rpy="0 0 0" />
+      <mass
+        value="0.946420382003392" />
+      <inertia
+        ixx="0.0329610222875384"
+        ixy="-3.87701080190695E-10"
+        ixz="-1.34622429521808E-17"
+        iyy="0.0187777630476483"
+        iyz="-3.66655263680178E-18"
+        izz="0.0517373657046137" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Lidar_Base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Lidar_Base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Lidar_Base"
+    type="fixed">
+    <origin
+      xyz="-0.234051584884104 -0.0290388901337071 0.0489999943781747"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="Body" />
+    <child
+      link="Lidar_Base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Lidar_Scanner">
+    <inertial>
+      <origin
+        xyz="0.00676653011666362 -0.000207827566854557 -0.0224318722671598"
+        rpy="0 0 0" />
+      <mass
+        value="1.33076913637071" />
+      <inertia
+        ixx="0.000614917940454089"
+        ixy="-8.01984318975333E-07"
+        ixz="0.000158243025911169"
+        iyy="0.000960697335617221"
+        iyz="-3.09162986587619E-06"
+        izz="0.00109815200027136" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Lidar_Scanner.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Lidar_Scanner.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Lidar_Scanner"
+    type="continuous">
+    <origin
+      xyz="0 0 0.0576999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="Lidar_Base" />
+    <child
+      link="Lidar_Scanner" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Front_Camera_MT">
+    <inertial>
+      <origin
+        xyz="-0.000234261061277965 -2.97962653439399E-08 -0.0161071164525381"
+        rpy="0 0 0" />
+      <mass
+        value="0.211905106214055" />
+      <inertia
+        ixx="0.00532493062916869"
+        ixy="4.66306998593964E-11"
+        ixz="-2.50417156623228E-06"
+        iyy="3.94536843579432E-05"
+        iyz="7.57281625504111E-11"
+        izz="0.00532373129509748" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Front_Camera_MT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Front_Camera_MT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_Camera_MT"
+    type="fixed">
+    <origin
+      xyz="-0.313050463395857 -0.0287638764225048 -0.180999991514702"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Front_Camera_MT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Front_Camera">
+    <inertial>
+      <origin
+        xyz="-0.0080427166152738 -0.000874206163087976 -0.00222855140807056"
+        rpy="0 0 0" />
+      <mass
+        value="0.0679861547032136" />
+      <inertia
+        ixx="5.04914757718326E-05"
+        ixy="4.51450951055534E-08"
+        ixz="-2.13503915219431E-06"
+        iyy="9.32183289190623E-06"
+        iyz="8.10336204477981E-09"
+        izz="4.63348591422326E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Front_Camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Front_Camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_Camera"
+    type="fixed">
+    <origin
+      xyz="0.0156944801242679 0 0.0168918344929064"
+      rpy="0 0.174532925199438 0" />
+    <parent
+      link="Front_Camera_MT" />
+    <child
+      link="Front_Camera" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Image_Front">
+    <inertial>
+      <origin
+        xyz="-0.00164987173626385 -2.51480044334562E-06 -0.0131763876752025"
+        rpy="0 0 0" />
+      <mass
+        value="0.0381911816511208" />
+      <inertia
+        ixx="2.1120495705041E-06"
+        ixy="-8.05270340991974E-09"
+        ixz="-9.79671400364913E-08"
+        iyy="2.22571035216604E-05"
+        iyz="1.29903757485322E-08"
+        izz="2.35733957044845E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Image_Front.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Image_Front.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Image_Front"
+    type="fixed">
+    <origin
+      xyz="-0.0249499999999995 0.000125918704536931 0.00377044867290449"
+      rpy="-1.5707963267949 0 1.56833358088111" />
+    <parent
+      link="Front_Camera" />
+    <child
+      link="Image_Front" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Reverse_Camera_MT">
+    <inertial>
+      <origin
+        xyz="0.000234276317210069 2.97962603479363E-08 -0.0161071164525388"
+        rpy="0 0 0" />
+      <mass
+        value="0.211905106214055" />
+      <inertia
+        ixx="0.00532493062916868"
+        ixy="4.66307011717206E-11"
+        ixz="2.50416828154746E-06"
+        iyy="3.94536843579431E-05"
+        iyz="-7.57281631794076E-11"
+        izz="0.00532373129509748" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Reverse_Camera_MT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Reverse_Camera_MT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Reverse_Camera_MT"
+    type="fixed">
+    <origin
+      xyz="0.342881522459764 -0.0287638764224984 -0.181000007614144"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Reverse_Camera_MT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Reverse_Camera">
+    <inertial>
+      <origin
+        xyz="0.00804271661463685 0.00087420616382039 -0.00222855140796331"
+        rpy="0 0 0" />
+      <mass
+        value="0.0679861546950516" />
+      <inertia
+        ixx="5.04914757707826E-05"
+        ixy="4.5145094934645E-08"
+        ixz="2.13503915206061E-06"
+        iyy="9.32183289145192E-06"
+        iyz="-8.10336151940621E-09"
+        izz="4.63348591415551E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Reverse_Camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Reverse_Camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Reverse_Camera"
+    type="fixed">
+    <origin
+      xyz="-0.0156944801242679 0 0.0168918344929064"
+      rpy="0 -0.174532925199437 0" />
+    <parent
+      link="Reverse_Camera_MT" />
+    <child
+      link="Reverse_Camera" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Image_Reverse">
+    <inertial>
+      <origin
+        xyz="-0.00168231679648789 -2.51480191698628E-06 -0.0131722845066194"
+        rpy="0 0 0" />
+      <mass
+        value="0.0381911816429588" />
+      <inertia
+        ixx="2.1116972009748E-06"
+        ixy="-8.02068650186516E-09"
+        ixz="-4.51123227173247E-08"
+        iyy="2.22571035209831E-05"
+        iyz="1.30101682305566E-08"
+        izz="2.35737480725097E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Image_Reverse.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Image_Reverse.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Image_Reverse"
+    type="fixed">
+    <origin
+      xyz="0.0249499999999996 -0.000125918704536931 0.00377044867290444"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="Reverse_Camera" />
+    <child
+      link="Image_Reverse" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Front_Rocker">
+    <inertial>
+      <origin
+        xyz="-5.66582091428014E-05 0.0438303368260084 0.000115565522915584"
+        rpy="0 0 0" />
+      <mass
+        value="0.459827256551091" />
+      <inertia
+        ixx="0.000227453978644239"
+        ixy="-4.14247263715235E-06"
+        ixz="-8.14300135463101E-07"
+        iyy="0.00343203227953279"
+        iyz="-1.05262224145938E-09"
+        izz="0.00325412581379253" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Front_Rocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Front_Rocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_Rocker"
+    type="revolute">
+    <origin
+      xyz="-0.20258446018362 -0.028863875893496 -0.165999991514701"
+      rpy="-1.5707963267949 0 1.5707963267949" />
+    <parent
+      link="Body" />
+    <child
+      link="Front_Rocker" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.1489"
+      upper="0.1489"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Left_Swivel">
+    <inertial>
+      <origin
+        xyz="-0.00551614788979483 1.27392666556814E-05 -0.0186899468711123"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506698337867" />
+      <inertia
+        ixx="7.17380476281133E-06"
+        ixy="-2.096570792114E-09"
+        ixz="-1.37881501552686E-06"
+        iyy="7.0276977338892E-06"
+        iyz="2.19742415828904E-09"
+        izz="8.17491446085559E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Swivel"
+    type="continuous">
+    <origin
+      xyz="-0.150080020215691 0.0618060476980877 0.000249999999995615"
+      rpy="1.56950365642807 1.5707963267949 0" />
+    <parent
+      link="Front_Rocker" />
+    <child
+      link="Left_Swivel" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Left_F_Castor">
+    <inertial>
+      <origin
+        xyz="-3.3993594050763E-10 -1.12207307334522E-09 -0.000250008084868747"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352759" />
+      <inertia
+        ixx="3.12375750733282E-05"
+        ixy="-6.56998820677052E-11"
+        ixz="1.25560857390231E-13"
+        iyy="3.12379268621405E-05"
+        iyz="-5.34209478077295E-13"
+        izz="5.72994448895554E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_F_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_F_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_F_Castor"
+    type="continuous">
+    <origin
+      xyz="-0.0284990864656565 0.000338482825321118 -0.0615"
+      rpy="1.5707963267949 0 3.13848794578718" />
+    <parent
+      link="Left_Swivel" />
+    <child
+      link="Left_F_Castor" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Right_Swivel">
+    <inertial>
+      <origin
+        xyz="0.00551614788979476 1.27392666562365E-05 0.0186899468711121"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506698337862" />
+      <inertia
+        ixx="7.17380476281084E-06"
+        ixy="2.09657079201479E-09"
+        ixz="-1.37881501552705E-06"
+        iyy="7.0276977338881E-06"
+        iyz="-2.19742415840892E-09"
+        izz="8.17491446085483E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Swivel"
+    type="continuous">
+    <origin
+      xyz="0.149919729134843 0.0621938487001337 0.000249999999995337"
+      rpy="1.57101363951164 -1.57079631189374 -3.14051729593971" />
+    <parent
+      link="Front_Rocker" />
+    <child
+      link="Right_Swivel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_F_Castor">
+    <inertial>
+      <origin
+        xyz="-3.39936023774356E-10 -1.12207313579527E-09 -0.000250008084868858"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352758" />
+      <inertia
+        ixx="3.12375750733281E-05"
+        ixy="-6.56998820218107E-11"
+        ixz="1.25560850958074E-13"
+        iyy="3.12379268621403E-05"
+        iyz="-5.34209592779615E-13"
+        izz="5.72994448895552E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_F_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_F_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_F_Castor"
+    type="continuous">
+    <origin
+      xyz="0.0284990864656564 0.000338482825323672 0.0615"
+      rpy="-1.5707963267949 0 0.00310470780269833" />
+    <parent
+      link="Right_Swivel" />
+    <child
+      link="Right_F_Castor" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Left_Rocker">
+    <inertial>
+      <origin
+        xyz="0.0200831805986115 0.0436052483741108 -1.86309119531991E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.32890607880069" />
+      <inertia
+        ixx="0.000146179065558614"
+        ixy="3.02094705064832E-06"
+        ixz="-4.07152206166295E-07"
+        iyy="0.00150143362070803"
+        iyz="9.07565483814376E-10"
+        izz="0.00140436441196532" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_Rocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_Rocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Rocker"
+    type="revolute">
+    <origin
+      xyz="0.128515534368436 -0.223763876422505 -0.166000007614144"
+      rpy="-1.57079632679482 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Left_Rocker" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.1974"
+      upper="0.1974"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Wheel_Left">
+    <inertial>
+      <origin
+        xyz="-4.84414485318885E-06 -7.49362262459112E-06 0.0330151559210198"
+        rpy="0 0 0" />
+      <mass
+        value="0.797124357704265" />
+      <inertia
+        ixx="0.00167164605028113"
+        ixy="-1.59587862547012E-08"
+        ixz="1.88838255171809E-07"
+        iyy="0.00167167893844666"
+        iyz="4.6996316797859E-08"
+        izz="0.00309189998295344" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Wheel_Left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Wheel_Left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_Left"
+    type="continuous">
+    <origin
+      xyz="-0.123828055407334 0.0772762104016322 -0.0914000000000055"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="Left_Rocker" />
+    <child
+      link="Wheel_Left" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Left_B_Swivel">
+    <inertial>
+      <origin
+        xyz="-0.00551566325578678 7.42568109166619E-05 0.0186899458903629"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506699245895" />
+      <inertia
+        ixx="7.17383478268313E-06"
+        ixy="-2.05603382795072E-10"
+        ixz="1.37867743540867E-06"
+        iyy="7.02766591635809E-06"
+        iyz="-1.95496207201055E-08"
+        izz="8.17491463917298E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_B_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_B_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_B_Swivel"
+    type="continuous">
+    <origin
+      xyz="0.100137952414771 0.0617769413792654 0.000249999999994199"
+      rpy="-1.57079632679497 0 -0.00222904777115469" />
+    <parent
+      link="Left_Rocker" />
+    <child
+      link="Left_B_Swivel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Left_B_Castor">
+    <inertial>
+      <origin
+        xyz="7.1676398150089E-10 -9.27887114365866E-10 0.000250008084876741"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352636" />
+      <inertia
+        ixx="3.12375758901376E-05"
+        ixy="-6.78465485369963E-11"
+        ixz="-7.26594185075812E-14"
+        iyy="3.12379260453165E-05"
+        iyz="5.43920970737155E-13"
+        izz="5.72994448895358E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_B_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Left_B_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_B_Castor"
+    type="continuous">
+    <origin
+      xyz="-0.0285008801782213 0.000111036330494252 0.0615000000000014"
+      rpy="-1.5707963267949 0 -0.0126675764120536" />
+    <parent
+      link="Left_B_Swivel" />
+    <child
+      link="Left_B_Castor" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_Rocker">
+    <inertial>
+      <origin
+        xyz="0.0199859326074684 -0.0436499063759271 1.86309127121476E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.328906078796891" />
+      <inertia
+        ixx="0.000146172331712952"
+        ixy="1.02830497274972E-13"
+        ixz="4.07153217702199E-07"
+        iyy="0.00150144035455296"
+        iyz="7.57679081574441E-19"
+        izz="0.00140436441196473" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_Rocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_Rocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Rocker"
+    type="revolute">
+    <origin
+      xyz="0.12831553530274 0.166236123577496 -0.166000007614144"
+      rpy="1.57079632679489 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Right_Rocker" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.1974"
+      upper="0.1974"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Wheel_Right">
+    <inertial>
+      <origin
+        xyz="-3.59471581923287E-06 8.16685889566378E-06 0.0330151560012635"
+        rpy="0 0 0" />
+      <mass
+        value="0.79712436139046" />
+      <inertia
+        ixx="0.00167168365118173"
+        ixy="-8.79997026908477E-09"
+        ixz="-6.45986632591764E-08"
+        iyy="0.00167164133406312"
+        iyz="-1.83563752031767E-07"
+        izz="0.00309189997983627" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Wheel_Right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Wheel_Right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_Right"
+    type="continuous">
+    <origin
+      xyz="-0.123999999999997 -0.0769999999999851 -0.0893999999999986"
+      rpy="0 0 0" />
+    <parent
+      link="Right_Rocker" />
+    <child
+      link="Wheel_Right" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_B_Swivel">
+    <inertial>
+      <origin
+        xyz="-0.0055156629239197 7.42568814673383E-05 0.0186899457911183"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506697641528" />
+      <inertia
+        ixx="7.17383468887349E-06"
+        ixy="-2.0558908734728E-10"
+        ixz="1.37867746618118E-06"
+        iyy="7.02766607388039E-06"
+        iyz="-1.95496507171862E-08"
+        izz="8.17491470625288E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_B_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_B_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_B_Swivel"
+    type="continuous">
+    <origin
+      xyz="0.0999999999999997 -0.0620000000000008 -0.000249999999999639"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="Right_Rocker" />
+    <child
+      link="Right_B_Swivel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_B_Castor">
+    <inertial>
+      <origin
+        xyz="7.16752657226039E-10 9.27823963492447E-10 -0.000250008084876407"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352762" />
+      <inertia
+        ixx="3.1237575890143E-05"
+        ixy="6.78465445834838E-11"
+        ixz="7.26282267045871E-14"
+        iyy="3.12379260453258E-05"
+        iyz="5.43939702671051E-13"
+        izz="5.72994448895557E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_B_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aug2per_sim/meshes/Right_B_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_B_Castor"
+    type="continuous">
+    <origin
+      xyz="-0.0285008801782213 0.000111036330494363 0.0615000000000015"
+      rpy="1.5707963267949 0 -0.0126675764120643" />
+    <parent
+      link="Right_B_Swivel" />
+    <child
+      link="Right_B_Castor" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>

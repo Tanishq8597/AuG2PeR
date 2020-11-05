@@ -17,7 +17,10 @@ ros::Publisher IMU_AM_pub("/IMU", &IMU_msg) ;
 MPU9250 IMU(Wire, 0x68) ;
 int IMU_status ;
 
-void setup() {
+void setup() 
+{
+  IMU_node.initNode() ;
+  IMU_node.advertise(IMU_AM_pub);
   Serial.begin(500000) ;
 
   IMU_status = IMU.begin() ;
@@ -29,8 +32,8 @@ void setup() {
     IMU.setGyroRange(MPU9250::GYRO_RANGE_2000DPS);
     // setting DLPF bandwidth to 41 Hz
     IMU.setDlpfBandwidth(MPU9250::DLPF_BANDWIDTH_41HZ);
-    //  update rate = 1000/(1+SRD) => 200Hz
-    IMU.setSrd(4);
+    //  update rate = 1000/(1+SRD) => 100Hz
+    IMU.setSrd(9);
 
     IMU_msg.state_connect = true ;
     IMU_msg.header.seq = 0 ;

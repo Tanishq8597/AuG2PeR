@@ -6,7 +6,8 @@ from std_msgs.msg import Header
 
 rospy.init_node("IMU_Logger")
 log_time = Header()
-time_pub = rospy.Publisher("Propogation_Time",Header,queue_size=2)
+time_pub = rospy.Publisher("In_Time",Header,queue_size=2)
+log_time.seq = 0
 
 def IMU_CB(data):
     current_time = rospy.get_rostime() 
@@ -14,6 +15,7 @@ def IMU_CB(data):
     log_time.stamp.nsecs= current_time.nsecs 
     # rospy.loginfo("%i sec %i nsec",log_time.stamp.secs-data.header.stamp.secs,log_time.stamp.nsecs-data.header.stamp.nsecs)
     time_pub.publish(log_time)
+    log_time.seq+=log_time.seq
 
 rospy.Subscriber("/IMU",grove_10dof,IMU_CB)
 rospy.spin()
