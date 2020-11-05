@@ -7,6 +7,3 @@
 [submodule "ros_decawave"]
 	path = ros_decawave
 	url = https://github.com/verlab/ros_decawave
-[submodule "rosserial"]
-	path = rosserial
-	url = https://github.com/ros-drivers/rosserial
