@@ -32,7 +32,6 @@ BMP280 bmp280;
 
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
-int16_t mx, my, mz;
 
 float Axyz[3];
 float Gxyz[3];
@@ -48,7 +47,6 @@ void setup() {
   // GROVE 10 DOF example code
   // join I2C bus (I2Cdev library doesn't do this automatically)
   Wire.begin();
-  //Wire.setClock(400000);
 
   accelgyro.initialize();
   bmp280.init();
@@ -92,14 +90,14 @@ void loop() {
 
 // Function Declarations
 float getAccel_Data(void) {
-  accelgyro.getMotion9(&ax, &ay, &az, &gx, &gy, &gz, &mx, &my, &mz);
+  accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz) ;
   Axyz[0] = (double) ax / 16384;
   Axyz[1] = (double) ay / 16384;
   Axyz[2] = (double) az / 16384;
 }
 
 float getGyro_Data(void) {
-  accelgyro.getMotion9(&ax, &ay, &az, &gx, &gy, &gz, &mx, &my, &mz);
+  accelgyro.getMotion9(&ax, &ay, &az, &gx, &gy, &gz) ;
   Gxyz[0] = (double) gx * 250 / 32768;
   Gxyz[1] = (double) gy * 250 / 32768;
   Gxyz[2] = (double) gz * 250 / 32768;
