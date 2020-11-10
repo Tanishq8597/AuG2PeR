@@ -1,0 +1,8 @@
+prefix=/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel
+
+Name: ros_decawave
+Description: Description of ros_decawave
+Version: 0.0.0
+Cflags: -I/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/include
+Libs: -L/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/lib 
+Requires: message_runtime roscpp std_msgs

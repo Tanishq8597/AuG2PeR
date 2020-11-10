@@ -1,6 +1,6 @@
 #include <ros.h>
 #include <ros/time.h>
-#include <amr/grove_10dof.h>
+#include <amr/IMU_10dof.h>
 
 #include "MPU9250.h"
 
@@ -9,7 +9,7 @@
 
 // ROS node
 ros::NodeHandle IMU_node ;
-amr::grove_10dof IMU_msg ;
+amr::IMU_10dof IMU_msg ;
 
 ros::Publisher IMU_AM_pub("/IMU", &IMU_msg) ;
 
@@ -17,12 +17,12 @@ ros::Publisher IMU_AM_pub("/IMU", &IMU_msg) ;
 MPU9250 IMU(Wire, 0x68) ;
 int IMU_status ;
 
-void setup() 
+void setup()
 {
   IMU_node.initNode() ;
   IMU_node.advertise(IMU_AM_pub);
   Serial.begin(500000) ;
-
+  
   IMU_status = IMU.begin() ;
   if (IMU_status > 0)
   {
@@ -32,26 +32,28 @@ void setup()
     IMU.setGyroRange(MPU9250::GYRO_RANGE_2000DPS);
     // setting DLPF bandwidth to 41 Hz
     IMU.setDlpfBandwidth(MPU9250::DLPF_BANDWIDTH_41HZ);
-    //  update rate = 1000/(1+SRD) => 100Hz
-    IMU.setSrd(9);
+    //  update rate = 1000/(1+SRD) => 250Hz
+    IMU.setSrd(3);
 
-    IMU_msg.state_connect = true ;
     IMU_msg.header.seq = 0 ;
   }
   else
   {
-    IMU_msg.state_connect = false ;
+    IMU_msg.header.frame_id = "Disconnected" ;
+    IMU_AM_pub.publish(&IMU_msg) ;
+    IMU_node.spinOnce();
+    setup() ;
   }
 }
 
 void loop() {
-  if (IMU_msg.state_connect)
+  if (IMU_status>0)
   {
     IMU.readSensor() ;
     IMU_msg.header.seq++ ;
 
     IMU_msg.header.stamp = IMU_node.now() ;
-    IMU_msg.header.frame_id = "IMU_10DOF" ;
+    IMU_msg.header.frame_id = "Connected" ;
 
     IMU_msg.accel_val[0] = IMU.getAccelX_mss() ;
     IMU_msg.accel_val[1] = IMU.getAccelY_mss() ;
@@ -69,5 +71,6 @@ void loop() {
 
     IMU_AM_pub.publish(&IMU_msg) ;
     IMU_node.spinOnce();
+//    delay(2) ;
   }
 }

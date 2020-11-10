@@ -51,8 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
-   grove_10dof.msg
-   odrive.msg
+   IMU_10dof.msg
  )
 
 ## Generate services in the 'srv' folder

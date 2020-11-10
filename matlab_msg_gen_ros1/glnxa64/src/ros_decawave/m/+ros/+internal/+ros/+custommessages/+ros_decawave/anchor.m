@@ -1,0 +1,31 @@
+function [data, info] = anchor
+%Anchor gives an empty data for ros_decawave/Anchor
+% Copyright 2019-2020 The MathWorks, Inc.
+data = struct();
+[data.header, info.header] = ros.internal.ros.messages.std_msgs.header;
+info.header.MLdataType = 'struct';
+[data.x, info.x] = ros.internal.ros.messages.ros.default_type('double',1);
+[data.y, info.y] = ros.internal.ros.messages.ros.default_type('double',1);
+[data.z, info.z] = ros.internal.ros.messages.ros.default_type('double',1);
+[data.qf, info.qf] = ros.internal.ros.messages.ros.default_type('double',1);
+[data.distance, info.distance] = ros.internal.ros.messages.ros.default_type('double',1);
+[data.dist_qf, info.dist_qf] = ros.internal.ros.messages.ros.default_type('double',1);
+info.MessageType = 'ros_decawave/Anchor';
+info.constant = 0;
+info.default = 0;
+info.maxstrlen = NaN;
+info.MaxLen = 1;
+info.MinLen = 1;
+info.MatPath = cell(1,12);
+info.MatPath{1} = 'header';
+info.MatPath{2} = 'header.seq';
+info.MatPath{3} = 'header.stamp';
+info.MatPath{4} = 'header.stamp.sec';
+info.MatPath{5} = 'header.stamp.nsec';
+info.MatPath{6} = 'header.frame_id';
+info.MatPath{7} = 'x';
+info.MatPath{8} = 'y';
+info.MatPath{9} = 'z';
+info.MatPath{10} = 'qf';
+info.MatPath{11} = 'distance';
+info.MatPath{12} = 'dist_qf';
