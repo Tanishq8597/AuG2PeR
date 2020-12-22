@@ -30,8 +30,8 @@ while(1)
     IMU_msg = receive(MTLB_sub,1) ;
     
     Quat = Fusion(IMU_msg.AccelVal',...
-                  IMU_msg.GyroVal') ;%,...
-%                   IMU_msg.MagVal') ;
+                  IMU_msg.GyroVal',...
+                  IMU_msg.MagVal') ;
               
     viewer(Quat) ;
 end

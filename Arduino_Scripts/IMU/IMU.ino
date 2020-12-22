@@ -21,6 +21,7 @@ void setup()
 {
   IMU_node.initNode() ;
   IMU_node.advertise(IMU_AM_pub);
+  IMU_node.negotiateTopics();
   Serial.begin(500000) ;
   
   IMU_status = IMU.begin() ;
@@ -42,7 +43,6 @@ void setup()
     IMU_msg.header.frame_id = "Disconnected" ;
     IMU_AM_pub.publish(&IMU_msg) ;
     IMU_node.spinOnce();
-    setup() ;
   }
 }
 
@@ -71,6 +71,6 @@ void loop() {
 
     IMU_AM_pub.publish(&IMU_msg) ;
     IMU_node.spinOnce();
-//    delay(2) ;
+    delay(1) ;
   }
 }
