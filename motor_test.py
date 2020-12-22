@@ -33,7 +33,7 @@ for speed in range(-5,5,1):
     print("Desired speed = %d rev/s" % (speed)) 
     time.sleep(3)
     print("Measured speed = %.5f rev/s" % (A0.encoder.vel_estimate))
-    error = abs(speed) - abs(A0.encoder.vel_estimate)
+    error = abs(speed/10) - abs(A0.encoder.vel_estimate)
     print("Error correction = %.5f \n" % error)
     
     
