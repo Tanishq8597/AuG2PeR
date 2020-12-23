@@ -71,13 +71,13 @@ class Motor_Driver:
         self.a0.controller.input_vel = self.left_speed
         self.a1.controller.input_vel = self.right_speed
 
-        # rospy.loginfo("Left_motor desired speed = %.5f \n', \
-        #     'Left_motor encoder speed =%.5f"\
-        #         %(self.left_speed,self.a0.encoder.vel_estimate))
+        rospy.loginfo("Left_motor desired speed = %.5f \n', \
+            'Left_motor encoder speed =%.5f"\
+                %(self.left_speed,self.a0.encoder.vel_estimate))
         
-        # rospy.loginfo("Right_motor desired speed = %.5f \n', \
-        #     'Right_motor encoder speed =%.5f"\
-        #         %(self.right_speed,self.a1.encoder.vel_estimate))
+        rospy.loginfo("Right_motor desired speed = %.5f \n', \
+            'Right_motor encoder speed =%.5f"\
+                %(self.right_speed,self.a1.encoder.vel_estimate))
 
 
     def Run(self):
@@ -85,7 +85,7 @@ class Motor_Driver:
         if rospy.get_time() - self.last_vel_time < self.timeout:
             self.runMotor(self.linearVelocity,self.angularVelocity)
         else:
-            self.runMotor(0,0)
+            # self.runMotor(0,0)
             self.a0.requested_state = AXIS_STATE_IDLE
             self.a1.requested_state = AXIS_STATE_IDLE
 
