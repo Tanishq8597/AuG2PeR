@@ -22,12 +22,14 @@ class Motor_Driver:
         odrive_board = odrive.find_any()
 
         rospy.init_node('diff_drive_controller')
-        rospy.on_shutdown(self.Stop_Motor())
+        # rospy.on_shutdown(self.Stop_Motor())
         Odrive_state_pub = rospy.Publisher("Odrive_state",Int32,queue_size=1)
         Odrive_state_pub.publish(1)
 
         self.a0 = odrive_board.axis0
         self.a1 = odrive_board.axis1
+
+        self.one_run = 0
 
         # self.a0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
         # self.a1.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
@@ -41,11 +43,12 @@ class Motor_Driver:
         self.wheelDiameter   = 166e-3      #m
         self.ticks_rev       = 90          #encoder ticks per revolution
         dist_per_rev         = pi*self.wheelDiameter
-        self.rev_per_m       = 1/dist_per_rev
+        self.rev_per_m       = 1/dist_per_rev  #1/pi*d
+        self.twist_per_rev   = 2*dist_per_rev/self.wheelSeparation #theta(rad) = s/r (sector arc)
         self.maxMotorSpeed  = maxMspeed   #rev/s 
-
+ 
         # Safety timeouts
-        self.timeout = 0.2 #s
+        self.timeout = 1 #s
 
         # cmd_vel subscriber
         rospy.Subscriber("cmd_vel",Twist,self.cmd_vel_CB)
@@ -58,19 +61,22 @@ class Motor_Driver:
             rate.sleep()
 
     def cmd_vel_CB(self,twist):
-        self.linearVelocity = twist.linear.x
-        self.angularVelocity= twist.angular.z
+        self.linearVelocity = twist.linear.x*self.rev_per_m
+        self.angularVelocity= twist.angular.z/self.twist_per_rev
         self.last_vel_time = rospy.get_time()
+        
 
     def runMotor(self,linear,angular):
-        self.a0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
-        self.a1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+        # self.a0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+        # self.a1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 
-        self.left_speed = -(2*linear-linear*angular)/(self.wheelDiameter)
-        self.right_speed= (2*linear+linear*angular)/(self.wheelDiameter)
+        self.left_speed = -(linear+angular*0.5*self.wheelSeparation)
+        self.right_speed=  (linear-angular*0.5*self.wheelSeparation)
 
-        self.a0.controller.input_vel = self.left_speed
-        self.a1.controller.input_vel = self.right_speed
+        if ~self.one_run:
+            self.a0.controller.input_vel = self.left_speed
+            self.a1.controller.input_vel = self.right_speed
+            self.one_run = 1
 
         left_speed_pub = rospy.Publisher("Left_Wheel_speed",Float32,queue_size=1)
         right_speed_pub= rospy.Publisher("Right_Wheel_speed",Float32,queue_size=1)
@@ -78,16 +84,18 @@ class Motor_Driver:
         left_encoder_pub = rospy.Publisher("Left_Encoder",Float32,queue_size=1)
         right_encoder_pub= rospy.Publisher("Right_Encoder",Float32,queue_size=1)
 
-        if rospy.get_time() - self.last_vel_time < 1 :
+        while rospy.get_time() - self.last_vel_time < 1 :
+            # rospy.loginfo(rospy.get_time() - self.last_vel_time)
             left_speed_pub.publish(self.left_speed)
             left_encoder_pub.publish(self.a0.encoder.vel_estimate)
             right_speed_pub.publish(self.right_speed)
             right_encoder_pub.publish(self.a1.encoder.vel_estimate)
 
+        
+
     def Stop_Motor(self):
         self.runMotor(0,0)
-        sys.exit(1)
-
+        # sys.exit(1)
 
     def Run(self):
         # Check for time out
@@ -95,8 +103,6 @@ class Motor_Driver:
             self.runMotor(self.linearVelocity,self.angularVelocity)
         else:
             self.Stop_Motor()
-            # self.a0.requested_state = AXIS_STATE_IDLE
-            # self.a1.requested_state = AXIS_STATE_IDLE
 
 
 if __name__ == '__main__':

@@ -17,13 +17,17 @@ ros::Publisher IMU_AM_pub("/IMU", &IMU_msg) ;
 MPU9250 IMU(Wire, 0x68) ;
 int IMU_status ;
 
+
 void setup()
 {
   IMU_node.initNode() ;
   IMU_node.advertise(IMU_AM_pub);
-  IMU_node.negotiateTopics();
   Serial.begin(500000) ;
-  
+  set_IMU();
+}
+
+void set_IMU()
+{
   IMU_status = IMU.begin() ;
   if (IMU_status > 0)
   {
@@ -46,8 +50,9 @@ void setup()
   }
 }
 
-void loop() {
-  if (IMU_status>0)
+void loop()
+{
+  if (IMU_status > 0)
   {
     IMU.readSensor() ;
     IMU_msg.header.seq++ ;
