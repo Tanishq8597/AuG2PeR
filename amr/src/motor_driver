@@ -27,8 +27,8 @@ class Motor_Driver:
         self.a0 = odrive_board.axis0
         self.a1 = odrive_board.axis1
 
-        self.a0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
-        self.a1.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
+        # self.a0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
+        # self.a1.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
 
         self.a0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
         self.a1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
@@ -56,6 +56,7 @@ class Motor_Driver:
             rate.sleep()
 
     def cmd_vel_CB(self,twist):
+        rospy.loginfo(twist)
         self.linearVelocity = twist.linear.x
         self.angularVelocity= twist.angular.z
         self.last_vel_time = rospy.get_time()
@@ -67,13 +68,13 @@ class Motor_Driver:
         self.a0.controller.input_vel = self.left_speed
         self.a1.controller.input_vel = self.right_speed
 
-        rospy.loginfo("Left_motor desired speed = %.5f \n', \
-            'Left_motor encoder speed =%.5f"\
-                %(self.left_speed,self.a0.encoder.vel_estimate))
+        # rospy.loginfo("Left_motor desired speed = %.5f \n', \
+        #     'Left_motor encoder speed =%.5f"\
+        #         %(self.left_speed,self.a0.encoder.vel_estimate))
         
-        rospy.loginfo("Right_motor desired speed = %.5f \n', \
-            'Right_motor encoder speed =%.5f"\
-                %(self.right_speed,self.a1.encoder.vel_estimate))
+        # rospy.loginfo("Right_motor desired speed = %.5f \n', \
+        #     'Right_motor encoder speed =%.5f"\
+        #         %(self.right_speed,self.a1.encoder.vel_estimate))
 
 
     def Run(self):
