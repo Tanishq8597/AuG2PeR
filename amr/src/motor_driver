@@ -62,6 +62,9 @@ class Motor_Driver:
         self.last_vel_time = rospy.get_time()
 
     def runMotor(self,linear,angular):
+        self.a0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+        self.a1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+
         self.left_speed = -(linear+angular*self.wheelDiameter*0.5)
         self.right_speed= linear-angular*self.wheelDiameter*0.5
 
