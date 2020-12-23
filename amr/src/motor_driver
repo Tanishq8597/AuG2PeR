@@ -9,6 +9,7 @@ from math import pi
 import odrive
 from odrive.enums import *
 import time
+import sys
 
 
 class Motor_Driver:
@@ -21,6 +22,7 @@ class Motor_Driver:
         odrive_board = odrive.find_any()
 
         rospy.init_node('diff_drive_controller')
+        rospy.on_shutdown(self.Stop_Motor())
         Odrive_state_pub = rospy.Publisher("Odrive_state",Int32,queue_size=1)
         Odrive_state_pub.publish(1)
 
@@ -64,19 +66,27 @@ class Motor_Driver:
         self.a0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
         self.a1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 
-        self.left_speed = -(linear+angular*self.wheelDiameter*0.5)
-        self.right_speed= linear-angular*self.wheelDiameter*0.5
+        self.left_speed = -(2*linear-linear*angular)/(self.wheelDiameter)
+        self.right_speed= (2*linear+linear*angular)/(self.wheelDiameter)
 
         self.a0.controller.input_vel = self.left_speed
         self.a1.controller.input_vel = self.right_speed
 
-        rospy.loginfo("Left_motor desired speed = %.5f \n', \
-            'Left_motor encoder speed =%.5f"\
-                %(self.left_speed,self.a0.encoder.vel_estimate))
-        
-        rospy.loginfo("Right_motor desired speed = %.5f \n', \
-            'Right_motor encoder speed =%.5f"\
-                %(self.right_speed,self.a1.encoder.vel_estimate))
+        left_speed_pub = rospy.Publisher("Left_Wheel_speed",Float32,queue_size=1)
+        right_speed_pub= rospy.Publisher("Right_Wheel_speed",Float32,queue_size=1)
+
+        left_encoder_pub = rospy.Publisher("Left_Encoder",Float32,queue_size=1)
+        right_encoder_pub= rospy.Publisher("Right_Encoder",Float32,queue_size=1)
+
+        if rospy.get_time() - self.last_vel_time < 1 :
+            left_speed_pub.publish(self.left_speed)
+            left_encoder_pub.publish(self.a0.encoder.vel_estimate)
+            right_speed_pub.publish(self.right_speed)
+            right_encoder_pub.publish(self.a1.encoder.vel_estimate)
+
+    def Stop_Motor(self):
+        self.runMotor(0,0)
+        sys.exit(1)
 
 
     def Run(self):
@@ -84,7 +94,7 @@ class Motor_Driver:
         if rospy.get_time() - self.last_vel_time < self.timeout:
             self.runMotor(self.linearVelocity,self.angularVelocity)
         else:
-            self.runMotor(0,0)
+            self.Stop_Motor()
             # self.a0.requested_state = AXIS_STATE_IDLE
             # self.a1.requested_state = AXIS_STATE_IDLE
 
