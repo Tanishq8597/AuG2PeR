@@ -43,7 +43,7 @@ class Motor_Driver:
         self.maxMotorSpeed  = maxMspeed   #rev/s 
 
         # Safety timeouts
-        self.timeout = 1.5 #s
+        self.timeout = 0.2 #s
 
         # cmd_vel subscriber
         rospy.Subscriber("cmd_vel",Twist,self.cmd_vel_CB)
