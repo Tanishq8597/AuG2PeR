@@ -3,6 +3,9 @@
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int32,Float32,Bool
+from amr.msg import wheel
+
+import controller
 
 # Other imports
 from math import pi
@@ -11,6 +14,11 @@ from odrive.enums import *
 import time
 import sys
 
+# Arguments from roslaunch
+max_speed   = 5  #m/s
+time_out    = 1  #s  
+left_gain   = [5,1.75,0.0135] 
+right_gain  = [6,1.5,0.0115]
 
 class Motor_Driver:
     def __init__(self):
@@ -18,21 +26,28 @@ class Motor_Driver:
         self.angularVelocity = 0
         self.left_speed  = 0
         self.right_speed = 0 
+
+        self.left_wheel = wheel()
+        self.left_wheel.header.frame_id = "Left Wheel"
+        self.left_wheel.header.seq = 0
+
+        self.right_wheel = wheel()
+        self.right_wheel.header.frame_id= "Right Wheel"
+        self.right_wheel.header.seq = 0
+
+        self.left_wheel_pub = rospy.Publisher("Left_Wheel",wheel,queue_size=1)
+        self.right_wheel_pub= rospy.Publisher("Right_Wheel",wheel,queue_size=1)
+
         # Wait until board is detected
         odrive_board = odrive.find_any()
 
-        rospy.init_node('diff_drive_controller')
+        rospy.init_node('diff_driver')
         # rospy.on_shutdown(self.Stop_Motor())
         Odrive_state_pub = rospy.Publisher("Odrive_state",Int32,queue_size=1)
         Odrive_state_pub.publish(1)
 
         self.a0 = odrive_board.axis0
         self.a1 = odrive_board.axis1
-
-        self.one_run = 0
-
-        # self.a0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
-        # self.a1.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL
 
         self.a0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
         self.a1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
@@ -45,16 +60,20 @@ class Motor_Driver:
         dist_per_rev         = pi*self.wheelDiameter
         self.rev_per_m       = 1/dist_per_rev  #1/pi*d
         self.twist_per_rev   = 2*dist_per_rev/self.wheelSeparation #theta(rad) = s/r (sector arc)
-        self.maxMotorSpeed  = maxMspeed   #rev/s 
- 
+        self.maxMotorSpeed   = maxMspeed*self.rev_per_m   #rev/s 
+
+        limits = [-self.maxMotorSpeed,self.maxMotorSpeed]
         # Safety timeouts
-        self.timeout = 1 #s
+        self.timeout = time_out #s
 
         # cmd_vel subscriber
         rospy.Subscriber("cmd_vel",Twist,self.cmd_vel_CB)
 
         rate = rospy.Rate(50)
         self.last_vel_time = rospy.get_time()
+
+        self.left_controller = controller.PID_controller_wheel("Left_wheel",limits,left_gain)
+        self.right_controller = controller.PID_controller_wheel("Right_wheel",limits,right_gain)
 
         while not rospy.is_shutdown():
             self.Run()
@@ -67,35 +86,44 @@ class Motor_Driver:
         
 
     def runMotor(self,linear,angular):
-        # self.a0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
-        # self.a1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
 
         self.left_speed = -(linear+angular*0.5*self.wheelSeparation)
         self.right_speed=  (linear-angular*0.5*self.wheelSeparation)
 
-        if ~self.one_run:
-            self.a0.controller.input_vel = self.left_speed
-            self.a1.controller.input_vel = self.right_speed
-            self.one_run = 1
+        encoder_time = rospy.get_time()
 
-        left_speed_pub = rospy.Publisher("Left_Wheel_speed",Float32,queue_size=1)
-        right_speed_pub= rospy.Publisher("Right_Wheel_speed",Float32,queue_size=1)
+        dt = encoder_time - self.last_vel_time
 
-        left_encoder_pub = rospy.Publisher("Left_Encoder",Float32,queue_size=1)
-        right_encoder_pub= rospy.Publisher("Right_Encoder",Float32,queue_size=1)
+        if dt > 1: dt = 0.1
 
-        while rospy.get_time() - self.last_vel_time < 1 :
-            # rospy.loginfo(rospy.get_time() - self.last_vel_time)
-            left_speed_pub.publish(self.left_speed)
-            left_encoder_pub.publish(self.a0.encoder.vel_estimate)
-            right_speed_pub.publish(self.right_speed)
-            right_encoder_pub.publish(self.a1.encoder.vel_estimate)
+        left_effort = self.left_controller.effort(self.left_speed,self.a0.encoder.vel_estimate,dt)
+        right_effort= self.right_controller.effort(self.right_speed,self.a1.encoder.vel_estimate,dt)
 
-        
+        self.a0.controller.input_vel = self.left_speed + left_effort
+        self.a1.controller.input_vel = self.right_speed+ right_effort
+
+
+        self.left_wheel.header.stamp   = rospy.get_rostime()
+        self.left_wheel.header.seq    += 1
+        self.left_wheel.setpoint_speed = self.left_speed
+        self.left_wheel.encoder_speed  = self.a0.encoder.vel_estimate
+        self.left_wheel.PID_speed      = self.left_speed + left_effort
+        self.left_wheel.dt             = dt  
+        self.left_wheel_pub.publish(self.left_wheel)
+
+
+        self.right_wheel.header.stamp = rospy.get_rostime()
+        self.right_wheel.header.seq    += 1
+        self.right_wheel.setpoint_speed = self.right_speed
+        self.right_wheel.encoder_speed  = self.a1.encoder.vel_estimate
+        self.right_wheel.PID_speed      = self.right_speed + right_effort
+        self.right_wheel.dt             = dt  
+        self.right_wheel_pub.publish(self.right_wheel)      
+
 
     def Stop_Motor(self):
         self.runMotor(0,0)
-        # sys.exit(1)
+
 
     def Run(self):
         # Check for time out
@@ -108,7 +136,7 @@ class Motor_Driver:
 if __name__ == '__main__':
     try:
         driving_node = Motor_Driver()
-        driving_node.setup(2)
+        driving_node.setup(max_speed)
     
     except rospy.ROSInterruptException:
         pass

@@ -51,7 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
-   IMU_10dof.msg
+   IMU_10dof.msg wheel.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -60,7 +60,7 @@ find_package(catkin REQUIRED COMPONENTS
 #   Service1.srv
 #   Service2.srv
 # )
-
+  
 ## Generate actions in the 'action' folder
 # add_action_files(
 #   FILES

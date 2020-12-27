@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/tanishqjain/catkin_ws/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/tanishqjain/catkin_ws/src/hector_slam/hector_geotiff/include/**",
+        "/home/tanishqjain/catkin_ws/src/hector_slam/hector_map_tools/include/**",
+        "/home/tanishqjain/catkin_ws/src/hector_slam/hector_mapping/include/**",
+        "/home/tanishqjain/catkin_ws/src/hector_slam/hector_marker_drawing/include/**",
+        "/home/tanishqjain/catkin_ws/src/pid/include/**",
+        "/home/tanishqjain/catkin_ws/src/aug2per/rosserial/rosserial_server/include/**",
+        "/home/tanishqjain/catkin_ws/src/aug2per/rosserial/rosserial_test/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ]
+}
