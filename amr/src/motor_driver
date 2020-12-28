@@ -135,7 +135,7 @@ class Motor_Driver:
         self.x += dt*V*cos(omega_dot*dt)
         self.y += dt*V*sin(omega_dot*dt)
 
-        print(x,y)
+        print(self.x,self.y)
 
     def Stop_Motor(self):
         self.runMotor(0,0)
