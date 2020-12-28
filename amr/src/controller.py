@@ -6,6 +6,7 @@ class PID_controller_wheel:
         # self.last_call_time = rospy.get_time()
         self.name = name
         self.upper_limit,self.lower_limit = limits
+        # print(self.upper_limit,self.lower_limit)
         self.KP,self.KI,self.KD = gains
 
     def effort(self,set_point,measured,dt):
@@ -25,15 +26,18 @@ class PID_controller_wheel:
         # print("D = %.4f"%d)
 
         correction = p + i + d #+ measured
+        limiter = self.in_bounds(correction+set_point)
+        # print(limiter)
         # print("Correction = %.4f"%correction)
-        return correction#*self.in_bounds(correction)
+
+        return correction #limiter-set_point#*self.in_bounds(correction)
 
     def in_bounds(self,value):
-        if value is None or value == 0:
+        if  value == 0:
             return value
-        elif value is not None and value > self.upper_limit:
-            return self.upper_limit/value
-        elif value is not None and value < self.lower_limit:
-            return self.lower_limit/value
+        elif value > self.upper_limit:
+            return value-self.upper_limit
+        elif  value < self.lower_limit:
+            return value-self.lower_limit
         else:
-            return 1
+            return value

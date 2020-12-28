@@ -6,6 +6,9 @@ from geometry_msgs.msg import Twist
 
 diameter = 166e-3 #m
 max_velocity = 2 #m/s
+dt = 1/150
+last_msg = 0
+
 
 def Node_Setup():
     rospy.init_node("Joystick",anonymous=True)
@@ -15,6 +18,7 @@ def Node_Setup():
 
 def JoystickCB(msg):
     cmd_vel_pub = rospy.Publisher("cmd_vel",Twist,queue_size=1)
+    last_msg = rospy.get_time()
     vel_msg = Twist()
     vel_msg.linear.x = msg.axes[1]*max_velocity
     vel_msg.angular.z = -msg.axes[3]*max_velocity
@@ -31,7 +35,7 @@ if __name__ == '__main__':
     try:    
 
         Node_Setup()
-        # rospy.Rate(100).sleep()
+        rospy.Rate(100).sleep()
         # rospy.Rate(10000).sleep()
     #     while not rospy.is_shutdown(): rate.sleep()
     except rospy.ROSInterruptException:
