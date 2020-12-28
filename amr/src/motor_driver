@@ -8,7 +8,7 @@ from amr.msg import wheel
 import controller
 
 # Other imports
-from math import pi
+from math import pi,cos,sin
 import odrive
 from odrive.enums import *
 import time
@@ -26,6 +26,8 @@ class Motor_Driver:
         self.angularVelocity = 0
         self.left_speed  = 0
         self.right_speed = 0 
+        self.x = 0
+        self.y = 0
 
         self.left_wheel = wheel()
         self.left_wheel.header.frame_id = "Left Wheel"
@@ -118,8 +120,22 @@ class Motor_Driver:
         self.right_wheel.encoder_speed  = self.a1.encoder.vel_estimate
         self.right_wheel.PID_speed      = self.right_speed + right_effort
         self.right_wheel.dt             = dt  
-        self.right_wheel_pub.publish(self.right_wheel)      
+        self.right_wheel_pub.publish(self.right_wheel)  
 
+        self.odom()    
+
+    def odom(self):
+        V_L = self.left_wheel.PID_speed/self.rev_per_m
+        V_R = self.right_wheel.PID_speed/self.rev_per_m
+        dt  = (self.left_wheel.dt + self.right_wheel.dt)*0.5
+
+        V         = 0.5*(V_R-V_L)
+        omega_dot = (V_L+V_R)/self.wheelSeparation
+
+        self.x += dt*V*cos(omega_dot*dt)
+        self.y += dt*V*sin(omega_dot*dt)
+
+        print(x,y)
 
     def Stop_Motor(self):
         self.runMotor(0,0)

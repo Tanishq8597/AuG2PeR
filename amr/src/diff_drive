@@ -17,11 +17,9 @@ def JoystickCB(msg):
     cmd_vel_pub = rospy.Publisher("cmd_vel",Twist,queue_size=1)
     vel_msg = Twist()
     vel_msg.linear.x = msg.axes[1]*max_velocity
-    vel_msg.angular.z = msg.axes[3]*max_velocity
+    vel_msg.angular.z = -msg.axes[3]*max_velocity
     e_stop = msg.buttons[0] 
     if e_stop:
-        vel_msg.header.frame_id = "E-stop"
-        vel_msg.header.stamp = rospy.get_rostime()
         vel_msg.linear.x = 0
         vel_msg.angular.z = 0
 
