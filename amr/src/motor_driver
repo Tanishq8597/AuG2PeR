@@ -233,5 +233,8 @@ if __name__ == '__main__':
         driving_node.setup(max_speed)
     
     except rospy.ROSInterruptException:
-        pass
+        driving_node.Stop_Motor()
+
+    except KeyboardInterrupt:
+        quit()
         
