@@ -147,7 +147,7 @@ class Motor_Driver:
         vx = V*cos(self.theta)
         vy = V*sin(self.theta)
 
-        self.x += dt*(vx*cos(self.theta)-vy*sin(self.theta))
+        self.x += -dt*(vx*cos(self.theta)-vy*sin(self.theta))
         self.y += dt*(vx*sin(self.theta)+vy*cos(self.theta))
         
         quat = tf.transformations.quaternion_from_euler(0,0,self.theta)
