@@ -134,21 +134,22 @@ class Motor_Driver:
         self.odom()    
 
     def odom(self):
-        V_L = self.left_wheel.PID_speed/self.rev_per_m
+        V_L = -self.left_wheel.PID_speed/self.rev_per_m
         V_R = self.right_wheel.PID_speed/self.rev_per_m
         dt  = (self.left_wheel.dt + self.right_wheel.dt)*0.5
 
         V         = 0.5*(V_R+V_L)
         omega_dot = (V_L-V_R)/self.wheelSeparation
-
-        theta = self.theta + omega_dot*dt
-        self.theta = theta
+ 
+        self.theta +=  omega_dot*dt
+        if self.theta > 2*pi  : self.theta = self.theta - 2*pi
+        if self.theta < -2*pi : self.theta = self.theta + 2*pi 
 
         vx = V*cos(self.theta)
         vy = V*sin(self.theta)
 
-        self.x += -dt*(vx*cos(self.theta)-vy*sin(self.theta))
-        self.y += dt*(vx*sin(self.theta)+vy*cos(self.theta))
+        self.x += dt*(vx*cos(self.theta)-vy*sin(self.theta))
+        self.y += -dt*(vx*sin(self.theta)+vy*cos(self.theta))
         
         quat = tf.transformations.quaternion_from_euler(0,0,self.theta)
 
@@ -184,41 +185,46 @@ class Motor_Driver:
         x = 0
         y = 0
         theta = 0 
-
         while True:
-            left_wheel_encoder = self.a0.encoder.vel_estimate
-            right_wheel_encoder= self.a1.encoder.vel_estimate
+            try:
+                left_wheel_encoder = self.a0.encoder.vel_estimate
+                right_wheel_encoder= self.a1.encoder.vel_estimate
 
-            if (left_wheel_encoder != left_wheel_encoder_hist) or (right_wheel_encoder != right_wheel_encoder_hist):
-                print("New encoder val")
-                dt = rospy.get_time() - t_hist
-                t_hist = rospy.get_time()
-                V_L = left_wheel_encoder/self.rev_per_m
-                V_R = right_wheel_encoder/self.rev_per_m
-        
-                V         = 0.5*(V_R+V_L)
-                omega_dot = (V_L-V_R)/self.wheelSeparation
-                theta += omega_dot*dt
+                if (left_wheel_encoder != left_wheel_encoder_hist) or (right_wheel_encoder != right_wheel_encoder_hist):
+                    dt = rospy.get_time() - t_hist
+                    t_hist = rospy.get_time()
+                    V_L = -left_wheel_encoder/self.rev_per_m
+                    V_R = right_wheel_encoder/self.rev_per_m
+            
+                    V         = 0.5*(V_R+V_L)
+                    omega_dot = (V_L-V_R)/self.wheelSeparation
+                    theta += omega_dot*dt
+                    if theta > 2*pi : theta = theta - 2*pi
+                    if theta < -2*pi : theta = theta + 2*pi 
 
-                vx = V*cos(theta)
-                vy = V*sin(theta)
+                    vx = V*cos(theta)
+                    vy = V*sin(theta)
 
-                x += dt*(vx*cos(theta)-vy*sin(theta))
-                y += dt*(vx*sin(theta)+vy*cos(theta))
-        
-                quat = tf.transformations.quaternion_from_euler(0,0,theta)
+                    x += dt*(vx*cos(theta)-vy*sin(theta))
+                    y += -dt*(vx*sin(theta)+vy*cos(theta))
 
-                self.odom_tf_pub.sendTransform((x,y,0),quat,rospy.get_rostime(),"Body","odom")
+                    print(x,y)
+            
+                    quat = tf.transformations.quaternion_from_euler(0,0,theta)
 
-                self.odom_msg.header.stamp = rospy.get_rostime()
-                self.odom_msg.pose.pose = Pose(Point(x,y,0),Quaternion(*quat))
-                self.odom_msg.child_frame_id = "Body"
-                self.odom_msg.twist.twist = Twist(Vector3(vx,vy,0),Vector3(0,0,omega_dot))
+                    self.odom_tf_pub.sendTransform((x,y,0),quat,rospy.get_rostime(),"Body","odom")
 
-                self.odom_pub.publish(self.odom_msg)
+                    self.odom_msg.header.stamp = rospy.get_rostime()
+                    self.odom_msg.pose.pose = Pose(Point(x,y,0),Quaternion(*quat))
+                    self.odom_msg.child_frame_id = "Body"
+                    self.odom_msg.twist.twist = Twist(Vector3(vx,vy,0),Vector3(0,0,omega_dot))
 
-                left_wheel_encoder_hist = left_wheel_encoder
-                right_wheel_encoder_hist = right_wheel_encoder
+                    self.odom_pub.publish(self.odom_msg)
+
+                    left_wheel_encoder_hist = left_wheel_encoder
+                    right_wheel_encoder_hist = right_wheel_encoder
+            except KeyboardInterrupt:
+                break
 
 if __name__ == '__main__':
     try:
