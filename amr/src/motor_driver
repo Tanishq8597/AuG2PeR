@@ -52,7 +52,10 @@ class Motor_Driver:
         # Wait until board is detected
         odrive_board = odrive.find_any()
 
-        rospy.init_node('diff_driver')
+        rospy.init_node('Motor_Driver')
+        rospy.loginfo("************************")
+        rospy.loginfo("Odrive board connected and node started")
+        rospy.loginfo("************************")
         # rospy.on_shutdown(self.Stop_Motor())
         Odrive_state_pub = rospy.Publisher("Odrive_state",Int32,queue_size=1)
         Odrive_state_pub.publish(1)
@@ -207,8 +210,6 @@ class Motor_Driver:
 
                     x += dt*(vx*cos(theta)-vy*sin(theta))
                     y += -dt*(vx*sin(theta)+vy*cos(theta))
-
-                    print(x,y)
             
                     quat = tf.transformations.quaternion_from_euler(0,0,theta)
 
