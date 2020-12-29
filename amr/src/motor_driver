@@ -87,7 +87,7 @@ class Motor_Driver:
         self.right_controller = controller.PID_controller_wheel("Right_wheel",limits,right_gain)
 
         while not rospy.is_shutdown():
-            self.Run()
+            self.FreeRun()
             rate.sleep()
 
     def cmd_vel_CB(self,twist):
@@ -224,7 +224,6 @@ if __name__ == '__main__':
     try:
         driving_node = Motor_Driver()
         driving_node.setup(max_speed)
-        driving_node.FreeRun()
     
     except rospy.ROSInterruptException:
         pass
