@@ -41,7 +41,7 @@ class Motor_Driver:
         self.right_wheel.header.seq = 0
 
         self.odom_msg = Odometry()
-        self.odom_msg.header.frame_id = "odom" 
+        self.odom_msg.header.frame_id = "cmodom" 
         self.odom_msg.header.seq = 0
 
         self.left_wheel_pub = rospy.Publisher("Left_Wheel",wheel,queue_size=1)
@@ -141,7 +141,7 @@ class Motor_Driver:
         V         = 0.5*(V_R+V_L)
         omega_dot = (V_L-V_R)/self.wheelSeparation
 
-        theta = self.theta + omega_dot
+        theta = self.theta + omega_dot*dt
         self.theta = theta
 
         vx = V*cos(self.theta)
@@ -175,11 +175,56 @@ class Motor_Driver:
         else:
             self.Stop_Motor()
 
+    def FreeRun(self):
+        self.a0.requested_state = AXIS_STATE_IDLE
+        self.a1.requested_state = AXIS_STATE_IDLE
+        left_wheel_encoder_hist = 0 
+        right_wheel_encoder_hist= 0
+        t_hist = rospy.get_time()
+        x = 0
+        y = 0
+        theta = 0 
+
+        while True:
+            left_wheel_encoder = self.a0.encoder.vel_estimate
+            right_wheel_encoder= self.a1.encoder.vel_estimate
+
+            if (left_wheel_encoder != left_wheel_encoder_hist) or (right_wheel_encoder != right_wheel_encoder_hist):
+                print("New encoder val")
+                dt = rospy.get_time() - t_hist
+                t_hist = rospy.get_time()
+                V_L = left_wheel_encoder/self.rev_per_m
+                V_R = right_wheel_encoder/self.rev_per_m
+        
+                V         = 0.5*(V_R+V_L)
+                omega_dot = (V_L-V_R)/self.wheelSeparation
+                theta += omega_dot*dt
+
+                vx = V*cos(theta)
+                vy = V*sin(theta)
+
+                x += dt*(vx*cos(theta)-vy*sin(theta))
+                y += dt*(vx*sin(theta)+vy*cos(theta))
+        
+                quat = tf.transformations.quaternion_from_euler(0,0,theta)
+
+                self.odom_tf_pub.sendTransform((x,y,0),quat,rospy.get_rostime(),"Body","odom")
+
+                self.odom_msg.header.stamp = rospy.get_rostime()
+                self.odom_msg.pose.pose = Pose(Point(x,y,0),Quaternion(*quat))
+                self.odom_msg.child_frame_id = "Body"
+                self.odom_msg.twist.twist = Twist(Vector3(vx,vy,0),Vector3(0,0,omega_dot))
+
+                self.odom_pub.publish(self.odom_msg)
+
+                left_wheel_encoder_hist = left_wheel_encoder
+                right_wheel_encoder_hist = right_wheel_encoder
 
 if __name__ == '__main__':
     try:
         driving_node = Motor_Driver()
         driving_node.setup(max_speed)
+        driving_node.FreeRun()
     
     except rospy.ROSInterruptException:
         pass
