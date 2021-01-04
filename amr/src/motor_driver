@@ -15,6 +15,7 @@ import odrive
 from odrive.enums import *
 import time
 import sys
+import numpy as np
 
 # Arguments from roslaunch
 max_speed   = 5  #m/s
@@ -73,7 +74,8 @@ class Motor_Driver:
         self.ticks_rev       = 90          #encoder ticks per revolution
         dist_per_rev         = pi*self.wheelDiameter
         self.rev_per_m       = 1/dist_per_rev  #1/pi*d
-        self.twist_per_rev   = 2*dist_per_rev/self.wheelSeparation #theta(rad) = s/r (sector arc)
+        twist_per_rev        = 2*dist_per_rev/self.wheelSeparation #theta(rad) = s/r (sector arc)
+        self.rev_per_rad     = 1/twist_per_rev
         self.maxMotorSpeed   = maxMspeed*self.rev_per_m   #rev/s 
 
         limits = [-self.maxMotorSpeed,self.maxMotorSpeed]
@@ -95,14 +97,14 @@ class Motor_Driver:
 
     def cmd_vel_CB(self,twist):
         self.linearVelocity = twist.linear.x*self.rev_per_m
-        self.angularVelocity= twist.angular.z/self.twist_per_rev
+        self.angularVelocity= twist.angular.z*self.rev_per_rad
         self.last_vel_time = rospy.get_time()
         
 
     def runMotor(self,linear,angular):
 
-        self.left_speed = -(linear+angular*0.5*self.wheelSeparation)
-        self.right_speed=  (linear-angular*0.5*self.wheelSeparation)
+        self.left_speed = -(linear-angular*0.5*self.wheelSeparation)
+        self.right_speed=  (linear+angular*0.5*self.wheelSeparation)
 
         encoder_time = rospy.get_time()
 
@@ -142,8 +144,8 @@ class Motor_Driver:
         dt  = (self.left_wheel.dt + self.right_wheel.dt)*0.5
 
         V         = 0.5*(V_R+V_L)
-        omega_dot = (V_L-V_R)/self.wheelSeparation
- 
+        omega_dot = (V_R-V_L)/self.wheelSeparation
+
         self.theta +=  omega_dot*dt
         if self.theta > 2*pi  : self.theta = self.theta - 2*pi
         if self.theta < -2*pi : self.theta = self.theta + 2*pi 
@@ -152,7 +154,7 @@ class Motor_Driver:
         vy = V*sin(self.theta)
 
         self.x += dt*(vx*cos(self.theta)-vy*sin(self.theta))
-        self.y += -dt*(vx*sin(self.theta)+vy*cos(self.theta))
+        self.y += dt*(vx*sin(self.theta)+vy*cos(self.theta))
         
         quat = tf.transformations.quaternion_from_euler(0,0,self.theta)
 
@@ -164,9 +166,7 @@ class Motor_Driver:
         self.odom_msg.twist.twist = Twist(Vector3(vx,vy,0),Vector3(0,0,omega_dot))
 
         self.odom_pub.publish(self.odom_msg)
-        # print("Theta = %.3f"%self.theta)
 
-        # print(self.x,self.y,d_theta)
 
     def Stop_Motor(self):
         self.runMotor(0,0)
@@ -200,7 +200,8 @@ class Motor_Driver:
                     V_R = right_wheel_encoder/self.rev_per_m
             
                     V         = 0.5*(V_R+V_L)
-                    omega_dot = (V_L-V_R)/self.wheelSeparation
+                    omega_dot = (V_R-V_L)/self.wheelSeparation
+
                     theta += omega_dot*dt
                     if theta > 2*pi : theta = theta - 2*pi
                     if theta < -2*pi : theta = theta + 2*pi 
@@ -209,7 +210,7 @@ class Motor_Driver:
                     vy = V*sin(theta)
 
                     x += dt*(vx*cos(theta)-vy*sin(theta))
-                    y += -dt*(vx*sin(theta)+vy*cos(theta))
+                    y += dt*(vx*sin(theta)+vy*cos(theta))
             
                     quat = tf.transformations.quaternion_from_euler(0,0,theta)
 
