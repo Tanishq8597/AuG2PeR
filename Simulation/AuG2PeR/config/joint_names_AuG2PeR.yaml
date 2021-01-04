@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'Front_Rocker', 'Left_Swivel', 'Left_F_Castor', 'Right_Swivel', 'Right_F_Castor', 'Left_Rocker', 'Wheel_Left', 'Left_B_Swivel', 'Left_B_Castor', 'Right_Rocker', 'Wheel_Right', 'Right_B_Swivel', 'Right_B_Castor', ]

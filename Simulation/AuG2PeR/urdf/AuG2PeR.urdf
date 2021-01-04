@@ -1,0 +1,1652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="AuG2PeR">
+  <link
+    name="Body">
+    <inertial>
+      <origin
+        xyz="0.00716026640736511 0.00172520985943481 0.256532475434186"
+        rpy="0 0 0" />
+      <mass
+        value="33.056195671599" />
+      <inertia
+        ixx="0.707348352655507"
+        ixy="0.000241517537468276"
+        ixz="0.00411055188164584"
+        iyy="0.743011043496012"
+        iyz="1.55745567785711E-05"
+        izz="1.06639769936482" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="IMU">
+    <inertial>
+      <origin
+        xyz="-0.0022349470826071 -5.36824052277396E-06 -0.000184211665558209"
+        rpy="0 0 0" />
+      <mass
+        value="0.00140243259130261" />
+      <inertia
+        ixx="4.31149015991426E-08"
+        ixy="-7.89268573725056E-12"
+        ixz="-8.36590400006167E-12"
+        iyy="1.56221337317265E-07"
+        iyz="3.01259843621263E-24"
+        izz="1.97404863548003E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/IMU.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/IMU.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="IMU"
+    type="fixed">
+    <origin
+      xyz="0.116764700416596 0.00350150782548497 0.189499971785752"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="IMU" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Accel">
+    <inertial>
+      <origin
+        xyz="-0.0022349470826071 -5.36824052277396E-06 -0.000184211665558209"
+        rpy="0 0 0" />
+      <mass
+        value="0.00140243259130261" />
+      <inertia
+        ixx="4.31149015991426E-08"
+        ixy="-7.89268573724908E-12"
+        ixz="-8.36590400006167E-12"
+        iyy="1.56221337317265E-07"
+        iyz="3.01473450391504E-24"
+        izz="1.97404863548003E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Accel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Accel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="IMU_accel"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="IMU" />
+    <child
+      link="Accel" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Mag">
+    <inertial>
+      <origin
+        xyz="-5.36824052310703E-06 0.00223494708260713 -0.000184211665558209"
+        rpy="0 0 0" />
+      <mass
+        value="0.00140243259130261" />
+      <inertia
+        ixx="1.56221337317265E-07"
+        ixy="7.89268573720885E-12"
+        ixz="3.01203614183205E-24"
+        iyy="4.31149015991426E-08"
+        iyz="8.36590400006168E-12"
+        izz="1.97404863548003E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Mag.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Mag.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="IMU_mag"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="IMU" />
+    <child
+      link="Mag" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="UWB">
+    <inertial>
+      <origin
+        xyz="0.0130765164022136 0.000417565200524495 -0.00237860248282654"
+        rpy="0 0 0" />
+      <mass
+        value="0.0140507300864501" />
+      <inertia
+        ixx="4.70296209620221E-06"
+        ixy="1.1544740124781E-08"
+        ixz="-9.08965468868349E-07"
+        iyy="1.36291743695962E-05"
+        iyz="9.73513007175758E-09"
+        izz="1.74908774957468E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/UWB.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/UWB.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UWB"
+    type="fixed">
+    <origin
+      xyz="0.239785953619563 -0.257500297762019 0.202799971785752"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="UWB" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Lidar">
+    <inertial>
+      <origin
+        xyz="-0.00676668663066682 7.9575573954549E-05 -0.00738187226715975"
+        rpy="0 0 0" />
+      <mass
+        value="1.33076913637071" />
+      <inertia
+        ixx="0.00061492201997467"
+        ixy="-1.43310026309332E-06"
+        ixz="-0.000158248405218838"
+        iyy="0.000960693256096642"
+        iyz="2.80279689693609E-06"
+        izz="0.00109815200027136" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Lidar.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Lidar"
+    type="fixed">
+    <origin
+      xyz="0.259248476283325 0.00160845581108005 0.311649987885194"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Lidar" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Front_Camera_MT">
+    <inertial>
+      <origin
+        xyz="0.00125143599778987 0.0140829433302715 -0.0183072888008988"
+        rpy="0 0 0" />
+      <mass
+        value="0.497086671395994" />
+      <inertia
+        ixx="0.012264251685547"
+        ixy="4.75633191797367E-11"
+        ixz="2.55425753121806E-06"
+        iyy="8.99852631249792E-05"
+        iyz="-7.72427203165742E-11"
+        izz="0.012263028387103" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Front_Camera_MT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Front_Camera_MT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_Camera_MT"
+    type="fixed">
+    <origin
+      xyz="0.331181338321098 -0.0139985062816387 0.0649999878851947"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Front_Camera_MT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Front_Camera">
+    <inertial>
+      <origin
+        xyz="-0.00184701405089949 2.94519262020176E-07 0.749960487362295"
+        rpy="0 0 0" />
+      <mass
+        value="1412.49857693757" />
+      <inertia
+        ixx="262.33370235927"
+        ixy="-2.74755171392194E-09"
+        ixz="-0.922886018662689"
+        iyy="480.672377254469"
+        iyz="-2.17801406421358E-06"
+        izz="637.069279067385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Front_Camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Front_Camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_Camera"
+    type="fixed">
+    <origin
+      xyz="0.00822174177234949 -0.000125479679795149 0.0249375236111071"
+      rpy="-1.39626392019333 0.000427650920728581 -1.57322165821235" />
+    <parent
+      link="Front_Camera_MT" />
+    <child
+      link="Front_Camera" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Reverse_Camera_MT">
+    <inertial>
+      <origin
+        xyz="-0.00125145266442195 -0.0140829433302656 -0.0183072888008994"
+        rpy="0 0 0" />
+      <mass
+        value="0.497086671395993" />
+      <inertia
+        ixx="0.012264251685547"
+        ixy="4.75631960834501E-11"
+        ixz="-2.5542491135171E-06"
+        iyy="8.99852631249789E-05"
+        iyz="7.72427259399916E-11"
+        izz="0.012263028387103" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Reverse_Camera_MT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Reverse_Camera_MT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Reverse_Camera_MT"
+    type="fixed">
+    <origin
+      xyz="-0.324750647534522 0.0160014937183539 0.0649999717857527"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Reverse_Camera_MT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Reverse_Camera">
+    <inertial>
+      <origin
+        xyz="0.030000532341469 1.21883034839843E-06 0.744855075416514"
+        rpy="0 0 0" />
+      <mass
+        value="343.015427446601" />
+      <inertia
+        ixx="25.8090475060931"
+        ixy="1.59365302197116E-09"
+        ixz="-2.74725921772291E-07"
+        iyy="36.8982973452032"
+        iyz="-2.19108699317516E-06"
+        izz="36.9860642641379" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Reverse_Camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Reverse_Camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Reverse_Camera"
+    type="fixed">
+    <origin
+      xyz="-0.00822174177235069 -0.0298745203202043 0.0249375236111074"
+      rpy="-1.39626340159546 0 1.5707963267949" />
+    <parent
+      link="Reverse_Camera_MT" />
+    <child
+      link="Reverse_Camera" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Front_Rocker">
+    <inertial>
+      <origin
+        xyz="0.0397785100684545 0 6.25376738776495E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.849730635264877" />
+      <inertia
+        ixx="0.00876271540547297"
+        ixy="2.68801578078251E-18"
+        ixz="-2.62738693671517E-18"
+        iyy="0.0003943685189792"
+        iyz="8.1430081580892E-07"
+        izz="0.00848779137026417" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Front_Rocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Front_Rocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_Rocker"
+    type="revolute">
+    <origin
+      xyz="0.220715335108861 -0.0138985068106475 0.0799999878851954"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Front_Rocker" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.1489"
+      upper="0.1489"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Left_Swivel">
+    <inertial>
+      <origin
+        xyz="1.27385640174005E-05 -0.00551614828500292 0.0186899471473729"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506698818601" />
+      <inertia
+        ixx="7.02769786499803E-06"
+        ixy="-2.09597117874903E-09"
+        ixz="-2.19759724443853E-09"
+        iyy="7.17380486334046E-06"
+        iyz="1.3788151025264E-06"
+        izz="8.17491429355775E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Swivel"
+    type="continuous">
+    <origin
+      xyz="0.0619999999999992 0.15 0.000249999999993034"
+      rpy="-1.57079632679491 0 -1.5707963267949" />
+    <parent
+      link="Front_Rocker" />
+    <child
+      link="Left_Swivel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Left_F_Castor">
+    <inertial>
+      <origin
+        xyz="3.39929570603026E-10 1.12207098473815E-09 -0.000250008084868969"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352761" />
+      <inertia
+        ixx="3.12375750738557E-05"
+        ixy="-6.57012937790988E-11"
+        ixz="-1.25562983270875E-13"
+        iyy="3.1237926861613E-05"
+        iyz="5.34208993923537E-13"
+        izz="5.72994448895555E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_F_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_F_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_F_Castor"
+    type="continuous">
+    <origin
+      xyz="0.000338482825125053 -0.0284990864656588 0.0615"
+      rpy="1.5707963267949 0 1.57390103459063" />
+    <parent
+      link="Left_Swivel" />
+    <child
+      link="Left_F_Castor" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Right_Swivel">
+    <inertial>
+      <origin
+        xyz="1.27385640174005E-05 -0.00551614828500309 0.018689947147373"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506698818607" />
+      <inertia
+        ixx="7.02769786499715E-06"
+        ixy="-2.09597117879431E-09"
+        ixz="-2.19759724432311E-09"
+        iyy="7.17380486333935E-06"
+        iyz="1.37881510252666E-06"
+        izz="8.17491429355796E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Swivel"
+    type="continuous">
+    <origin
+      xyz="0.0619999999999993 -0.15 0.000249999999992812"
+      rpy="-1.57079632679491 0 -1.5707963267949" />
+    <parent
+      link="Front_Rocker" />
+    <child
+      link="Right_Swivel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_F_Castor">
+    <inertial>
+      <origin
+        xyz="3.39929459580723E-10 1.12207119984387E-09 -0.000250008084869302"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352756" />
+      <inertia
+        ixx="3.12375750738555E-05"
+        ixy="-6.57012938406761E-11"
+        ixz="-1.25563070389537E-13"
+        iyy="3.12379268616131E-05"
+        iyz="5.34209072034923E-13"
+        izz="5.72994448895553E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_F_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_F_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_F_Castor"
+    type="continuous">
+    <origin
+      xyz="0.000338482825125164 -0.0284990864656588 0.0615"
+      rpy="1.5707963267949 0 1.57390103459063" />
+    <parent
+      link="Right_Swivel" />
+    <child
+      link="Right_F_Castor" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Left_Rocker">
+    <inertial>
+      <origin
+        xyz="-0.0105796541330644 -0.0395788554267292 -9.86236751987501E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.621333612832232" />
+      <inertia
+        ixx="0.000271362253105128"
+        ixy="-1.02830295089185E-13"
+        ixz="4.07153217701857E-07"
+        iyy="0.00379362140099433"
+        iyz="1.33093070099273E-17"
+        izz="0.00362378629744565" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_Rocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_Rocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Rocker"
+    type="revolute">
+    <origin
+      xyz="-0.11038465944321 0.181001493718368 0.079999971785724"
+      rpy="1.57079632679482 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Left_Rocker" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.1974"
+      upper="0.1974"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Wheel_Left">
+    <inertial>
+      <origin
+        xyz="-7.00231539824125E-06 5.53058001254289E-06 0.0330151558644588"
+        rpy="0 0 0" />
+      <mass
+        value="0.797124355135688" />
+      <inertia
+        ixx="0.00167168164654373"
+        ixy="1.25818135896071E-08"
+        ixz="2.89426649223636E-08"
+        iyy="0.00167164333800673"
+        iyz="-1.92434256023591E-07"
+        izz="0.003091899979187" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Wheel_Left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Wheel_Left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_Left"
+    type="continuous">
+    <origin
+      xyz="0.123999999981679 -0.076999983929979 -0.0913999999999782"
+      rpy="0 0 0" />
+    <parent
+      link="Left_Rocker" />
+    <child
+      link="Wheel_Left" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Left_B_Swivel">
+    <inertial>
+      <origin
+        xyz="0.00551566294318184 -7.42568814667832E-05 0.0186899458136724"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506697641538" />
+      <inertia
+        ixx="7.17383468821699E-06"
+        ixy="-2.05589082542208E-10"
+        ixz="-1.37867746594271E-06"
+        iyy="7.02766607388062E-06"
+        iyz="1.95496507172235E-08"
+        izz="8.17491470691E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_B_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_B_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_B_Swivel"
+    type="continuous">
+    <origin
+      xyz="-0.100000000014795 -0.0619999838766658 0.000249999999999528"
+      rpy="1.57079632679491 0 0" />
+    <parent
+      link="Left_Rocker" />
+    <child
+      link="Left_B_Swivel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Left_B_Castor">
+    <inertial>
+      <origin
+        xyz="-6.87297663226616E-10 9.449073676282E-10 0.000250008084491271"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352759" />
+      <inertia
+        ixx="3.12375758901429E-05"
+        ixy="-6.78465442524486E-11"
+        ixz="7.26266838340736E-14"
+        iyy="3.12379260453258E-05"
+        iyz="-5.4386283700666E-13"
+        izz="5.72994448895554E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_B_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Left_B_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_B_Castor"
+    type="continuous">
+    <origin
+      xyz="0.0285008801782217 -0.000111036330500136 0.0614999999999996"
+      rpy="1.5707963267949 0 -0.0126675764119947" />
+    <parent
+      link="Left_B_Swivel" />
+    <child
+      link="Left_B_Castor" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_Rocker">
+    <inertial>
+      <origin
+        xyz="-0.0297376344079677 -0.0430970218165431 -0.0299541878108782"
+        rpy="0 0 0" />
+      <mass
+        value="0.790748590515745" />
+      <inertia
+        ixx="0.000376223762794948"
+        ixy="-1.02830224905247E-13"
+        ixz="1.09930891114065E-06"
+        iyy="0.00403779102077872"
+        iyz="5.53123333468385E-19"
+        izz="0.00376716036700463" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_Rocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_Rocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Rocker"
+    type="revolute">
+    <origin
+      xyz="-0.110184660377499 -0.208998506281639 0.0799999717857523"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Right_Rocker" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.1974"
+      upper="0.1974"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Wheel_Right">
+    <inertial>
+      <origin
+        xyz="8.85083389801089E-06 1.13263486438116E-06 0.0330151558582432"
+        rpy="0 0 0" />
+      <mass
+        value="0.797124355204373" />
+      <inertia
+        ixx="0.00167164951583944"
+        ixy="1.88885393592855E-08"
+        ixz="-1.57728784929501E-07"
+        iyy="0.0016716754693355"
+        iyz="1.13974900172034E-07"
+        izz="0.00309189997982022" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Wheel_Right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Wheel_Right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_Right"
+    type="continuous">
+    <origin
+      xyz="0.123999999981658 -0.0769999839300791 0.0593999999999968"
+      rpy="-3.1415926535897 0 0" />
+    <parent
+      link="Right_Rocker" />
+    <child
+      link="Wheel_Right" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_B_Swivel">
+    <inertial>
+      <origin
+        xyz="0.005515662943126 -7.42568814393607E-05 0.0186899458136185"
+        rpy="0 0 0" />
+      <mass
+        value="0.0239506697641527" />
+      <inertia
+        ixx="7.17383468821749E-06"
+        ixy="-2.05589082537144E-10"
+        ixz="-1.37867746594193E-06"
+        iyy="7.02766607388251E-06"
+        iyz="1.9549650717167E-08"
+        izz="8.17491470691084E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_B_Swivel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_B_Swivel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_B_Swivel"
+    type="continuous">
+    <origin
+      xyz="-0.100000000014765 -0.0619999838767119 -0.0297499999999906"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="Right_Rocker" />
+    <child
+      link="Right_B_Swivel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Right_B_Castor">
+    <inertial>
+      <origin
+        xyz="-6.87307433189233E-10 9.44857386775411E-10 0.000250008084508702"
+        rpy="0 0 0" />
+      <mass
+        value="0.0665983351352762" />
+      <inertia
+        ixx="3.12375758901432E-05"
+        ixy="-6.78465443472226E-11"
+        ixz="7.26282297750815E-14"
+        iyy="3.12379260453259E-05"
+        iyz="-5.43860673987543E-13"
+        izz="5.72994448895559E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_B_Castor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.807843137254902 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Right_B_Castor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_B_Castor"
+    type="continuous">
+    <origin
+      xyz="0.0285008801781865 -0.00011103633049081 0.061500000000026"
+      rpy="1.57079632679491 0 -0.0126675764120638" />
+    <parent
+      link="Right_B_Swivel" />
+    <child
+      link="Right_B_Castor" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Bump_1">
+    <inertial>
+      <origin
+        xyz="-0.0118531903170354 -1.93171966911265E-06 7.52520065997082E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.00528170144115613" />
+      <inertia
+        ixx="3.3926046898058E-07"
+        ixy="-4.00789465007217E-13"
+        ixz="-1.26818239225865E-10"
+        iyy="2.56073208700271E-07"
+        iyz="-6.22679150533447E-13"
+        izz="1.8769965475622E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_1"
+    type="fixed">
+    <origin
+      xyz="0.362215337101175 -0.123498506281639 0.0149999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Bump_2">
+    <inertial>
+      <origin
+        xyz="-0.0118531903170354 2.30682803311621E-05 -0.000521699897504946"
+        rpy="0 0 0" />
+      <mass
+        value="0.00528170144115614" />
+      <inertia
+        ixx="3.39260468980583E-07"
+        ixy="-4.00789465392349E-13"
+        ixz="-1.26818239225903E-10"
+        iyy="2.56073208700274E-07"
+        iyz="-6.2267915066983E-13"
+        izz="1.87699654756222E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_2"
+    type="fixed">
+    <origin
+      xyz="0.362215337101175 0.125476493718361 0.0155292250981648"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Bump_3">
+    <inertial>
+      <origin
+        xyz="-2.30682803309401E-05 -0.0118531903170355 -0.000521699897504946"
+        rpy="0 0 0" />
+      <mass
+        value="0.00528170144115615" />
+      <inertia
+        ixx="2.56073208700274E-07"
+        ixy="4.00789465086139E-13"
+        ixz="6.22679150683492E-13"
+        iyy="3.39260468980584E-07"
+        iyz="-1.2681823922615E-10"
+        izz="1.87699654756222E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_3"
+    type="fixed">
+    <origin
+      xyz="0.112740335108856 0.325001479611237 0.0155292250981648"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Bump_4">
+    <inertial>
+      <origin
+        xyz="-2.30682803309401E-05 -0.0118531903170354 -0.000521699897504949"
+        rpy="0 0 0" />
+      <mass
+        value="0.00528170144115617" />
+      <inertia
+        ixx="2.56073208700275E-07"
+        ixy="4.0078946509501E-13"
+        ixz="6.22679150509186E-13"
+        iyy="3.39260468980583E-07"
+        iyz="-1.2681823922615E-10"
+        izz="1.87699654756222E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_4"
+    type="fixed">
+    <origin
+      xyz="-0.106259664891144 0.325001479611237 0.0155292250981649"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Bump_5">
+    <inertial>
+      <origin
+        xyz="0.0118531903170354 -2.30682803311621E-05 -0.000521699897504942"
+        rpy="0 0 0" />
+      <mass
+        value="0.00528170144115616" />
+      <inertia
+        ixx="3.39260468980585E-07"
+        ixy="-4.00789465465729E-13"
+        ixz="1.26818239225887E-10"
+        iyy="2.56073208700275E-07"
+        iyz="6.22679150799592E-13"
+        izz="1.87699654756223E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_5"
+    type="fixed">
+    <origin
+      xyz="-0.355784662898825 0.125526493718361 0.0155292250981649"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_5" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Bump_6">
+    <inertial>
+      <origin
+        xyz="0.0118531903170351 -2.30682803310511E-05 -0.000521699897504935"
+        rpy="0 0 0" />
+      <mass
+        value="0.00528170144115613" />
+      <inertia
+        ixx="3.3926046898058E-07"
+        ixy="-4.00789464984863E-13"
+        ixz="1.26818239225895E-10"
+        iyy="2.56073208700272E-07"
+        iyz="6.22679150593355E-13"
+        izz="1.8769965475622E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_6"
+    type="fixed">
+    <origin
+      xyz="-0.355784662898825 -0.12347350628164 0.0155292250981649"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_6" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Bump_7">
+    <inertial>
+      <origin
+        xyz="2.30682803309401E-05 0.0118531903170356 -0.000521699897504941"
+        rpy="0 0 0" />
+      <mass
+        value="0.00528170144115605" />
+      <inertia
+        ixx="2.5607320870027E-07"
+        ixy="4.00789465004449E-13"
+        ixz="-6.22679150871805E-13"
+        iyy="3.39260468980578E-07"
+        iyz="1.26818239226069E-10"
+        izz="1.87699654756218E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_7"
+    type="fixed">
+    <origin
+      xyz="-0.106309660906506 -0.322998492174515 0.0155292250981648"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_7" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Bump_8">
+    <inertial>
+      <origin
+        xyz="2.30682803309956E-05 0.0118531903170354 -0.000521699897504941"
+        rpy="0 0 0" />
+      <mass
+        value="0.0052817014411561" />
+      <inertia
+        ixx="2.56073208700271E-07"
+        ixy="4.00789465028166E-13"
+        ixz="-6.22679150781425E-13"
+        iyy="3.39260468980579E-07"
+        iyz="1.26818239226069E-10"
+        izz="1.87699654756218E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://AuG2PeR/meshes/Bump_8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Bump_8"
+    type="fixed">
+    <origin
+      xyz="0.112690335108857 -0.322998492174515 0.0155292250981648"
+      rpy="0 0 0" />
+    <parent
+      link="Body" />
+    <child
+      link="Bump_8" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
