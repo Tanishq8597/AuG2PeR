@@ -25,5 +25,5 @@ void loop()
   str_msg.data = hello;
   chatter.publish( &str_msg );
   nh.spinOnce();
-  delay(1000);
+  delay(1);
 }

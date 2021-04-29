@@ -9,6 +9,7 @@ project(amr)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
+sensor_msgs
   message_generation
   roscpp
   rospy
@@ -108,7 +109,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES amr
-  CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs message_runtime
+  CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs message_runtime sensor_msgs
 #  DEPENDS system_lib message_runtime
 )
 
