@@ -1,6 +1,6 @@
 #include <ros.h>
 #include <ros/time.h>
-#include <amr/IMU_10dof.h>
+#include <sensor_msgs/Imu.h>
 
 #include "MPU9250.h"
 
@@ -9,13 +9,14 @@
 
 // ROS node
 ros::NodeHandle IMU_node ;
-amr::IMU_10dof IMU_msg ;
+sensor_msgs::Imu imu_msg ;
 
-ros::Publisher IMU_AM_pub("/IMU", &IMU_msg) ;
+ros::Publisher IMU_AM_pub("/IMU", &imu_msg) ;
 
 // IMU
 MPU9250 IMU(Wire, 0x68) ;
 int IMU_status ;
+int16_t mx,my.mz
 
 
 void setup()
@@ -40,12 +41,12 @@ void set_IMU()
     //  update rate = 1000/(1+SRD) => 250Hz
     IMU.setSrd(3);
 
-    IMU_msg.header.seq = 0 ;
+    imu_msg.header.seq = 0 ;
   }
   else
   {
-    IMU_msg.header.frame_id = "Disconnected" ;
-    IMU_AM_pub.publish(&IMU_msg) ;
+    imu_msg.header.frame_id = "Disconnected" ;
+    IMU_AM_pub.publish(&imu_msg) ;
     IMU_node.spinOnce();
   }
 }
@@ -54,27 +55,32 @@ void loop()
 {
   if (IMU_status > 0)
   {
-    IMU.readSensor() ;
-    IMU_msg.header.seq++ ;
+//    IMU.readSensor() ;
+    imu_msg.header.seq++ ;
 
-    IMU_msg.header.stamp = IMU_node.now() ;
-    IMU_msg.header.frame_id = "Connected" ;
+    imu_msg.header.stamp = IMU_node.now() ;
+    imu_msg.header.frame_id = "IMU" ;
 
-    IMU_msg.accel_val[0] = IMU.getAccelX_mss() ;
-    IMU_msg.accel_val[1] = IMU.getAccelY_mss() ;
-    IMU_msg.accel_val[2] = IMU.getAccelZ_mss() ;
+    IMU.getmotion9(
+      imu_msg.linear_acceleration.x,imu_msg.linear_acceleration.y,imu_msg.linear_acceleration.z,
+      imu_msg.angular_acceleration.x,imu_msg.angular_acceleration.y,imu_msg.angular_acceleration.z,
+      mx,my,mz)
 
-    IMU_msg.gyro_val[0] = IMU.getGyroX_rads() ;
-    IMU_msg.gyro_val[1] = IMU.getGyroY_rads() ;
-    IMU_msg.gyro_val[2] = IMU.getGyroZ_rads() ;
-
-    IMU_msg.mag_val[0] = IMU.getMagX_uT() ;
-    IMU_msg.mag_val[1] = IMU.getMagY_uT() ;
-    IMU_msg.mag_val[2] = IMU.getMagZ_uT() ;
+//    IMU_msg.accel_val[0] = IMU.getAccelerationX() ;
+//    IMU_msg.accel_val[1] = IMU.getAccelerationY() ;
+//    IMU_msg.accel_val[2] = IMU.getAccelerationZ() ;
+//
+//    IMU_msg.gyro_val[0] = IMU.getGyroX_rads() ;
+//    IMU_msg.gyro_val[1] = IMU.getGyroY_rads() ;
+//    IMU_msg.gyro_val[2] = IMU.getGyroZ_rads() ;
+//
+//    IMU_msg.mag_val[0] = IMU.getMagX_uT() ;
+//    IMU_msg.mag_val[1] = IMU.getMagY_uT() ;
+//    IMU_msg.mag_val[2] = IMU.getMagZ_uT() ;
 
     IMU_msg.temp = IMU.getTemperature_C();
 
-    IMU_AM_pub.publish(&IMU_msg) ;
+    IMU_AM_pub.publish(&imu_msg) ;
     IMU_node.spinOnce();
     delay(1) ;
   }
