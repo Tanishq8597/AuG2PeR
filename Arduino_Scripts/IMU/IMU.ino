@@ -15,7 +15,7 @@ sensor_msgs::Imu imu_msg ;
 ros::Publisher IMU_AM_pub("/IMU", &imu_msg) ;
 
 // IMU
-MPU9250 IMU(0x68);
+MPU9250 IMU;
 int16_t ax, ay, az ;
 int16_t gx, gy, gz ;
 int16_t mx, my, mz ;
@@ -23,7 +23,7 @@ int16_t mx, my, mz ;
 
 void setup()
 {
-  IMU_node.intialize();
+  IMU_node.initNode();
   IMU_node.advertise(IMU_AM_pub);
   Serial.begin(500000) ;
   set_IMU();
@@ -33,6 +33,7 @@ void set_IMU()
 {
   if (IMU.testConnection())
   {
+    IMU.initialize();
     //    // setting the accelerometer full scale range to +/-16G
     //    IMU.setAccelRange(MPU9250::ACCEL_RANGE_16G);
     //    // setting the gyroscope full scale range to +/-2000 deg/s
