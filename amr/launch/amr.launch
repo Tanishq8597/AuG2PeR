@@ -1,5 +1,5 @@
 <launch>
-   <!-- URDF based static tfransform publisher -->
+<!-- URDF based static tfransform publisher -->
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_static_frames" >
       <param name="my_robot_description" textfile="$(find amr)/urdf_descript/AuG2PeR_lite.xml"/>
       <remap from="robot_description" to="my_robot_description" />
@@ -14,5 +14,11 @@
       <param name="inverted"            type="bool"   value="false"/>
       <param name="angle_compensate"    type="bool"   value="true"/>
       <param name="motor_pwm"           value="1000"/>
+    </node>
+
+<!-- Arduino-IMU  -->
+    <node name="serial_node"     pkg="rosserial_python"  type="serial_node.py" output="screen">
+      <param name="port"         type="string" value="/dev/ttyUSB0"/>  
+      <param name="baud"         type="int"    value="500000"/>
     </node>
 </launch>
