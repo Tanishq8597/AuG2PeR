@@ -112,6 +112,6 @@ void loop()
     IMU_ag_pub.publish(&imu_msg) ;
     IMU_mag_pub.publish(&mag_msg) ;
     IMU_node.spinOnce();
-//    delay(1) ;
+    delay(1) ;
   }
 }
