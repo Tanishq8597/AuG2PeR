@@ -19,6 +19,8 @@ std_msgs::Float64MultiArray imu;
 std_msgs::Float64MultiArray imu_cov;
 std_msgs::Header imu_header ;
 
+std_msgs::MultiArrayDimension a;
+
 //ros::Publisher IMU_ag_pub("/imu/data_raw", &imu_msg) ;
 //ros::Publisher IMU_mag_pub("/imu/mag", &mag_msg) ;
 ros::Publisher IMU_pub("/imu/data", &imu) ;
@@ -38,12 +40,10 @@ void setup()
   IMU_node.advertise(IMU_time_pub);
   set_IMU();
 
-  imu.layout.dim.push_back(std_msgs::MultiArrayDimension());
-  imu.layout.dim[0].size = 9
+  imu.layout.dim[0].size = 9;
   imu.layout.dim[0].stride=1;
 
-  imu_cov.layout.dim.push_back(std_msgs::MultiArrayDimension());
-  imu_cov.layout.dim[0].size = 9
+  imu_cov.layout.dim[0].size = 9;
   imu_cov.layout.dim[0].stride=1;
 }
 
@@ -103,9 +103,9 @@ void loop()
     //    imu_msg.linear_acceleration.y = IMU.getAccelY_mss() ;
     //    imu_msg.linear_acceleration.z = IMU.getAccelZ_mss() ;
 
-    imu.data.push_back(IMU.getAccelX_mss()) ;
-    imu.data.push_back(IMU.getAccelY_mss()) ;
-    imu.data.push_back(IMU.getAccelZ_mss()) ;
+    imu.data[0] =IMU.getAccelX_mss() ;
+    imu.data[1] =IMU.getAccelY_mss() ;
+    imu.data[2] =IMU.getAccelZ_mss() ;
 
     if (accel > 0)
     {
@@ -113,9 +113,9 @@ void loop()
       //      imu_msg.linear_acceleration_covariance[4] = IMU.getAccelBiasY_mss() ;
       //      imu_msg.linear_acceleration_covariance[8] = IMU.getAccelBiasZ_mss() ;
 
-      imu_cov.data.push_back(IMU.getAccelBiasX_mss()) ;
-      imu_cov.data.push_back(IMU.getAccelBiasY_mss()) ;
-      imu_cov.data.push_back(IMU.getAccelBiasZ_mss()) ;
+      imu_cov.data[0] =IMU.getAccelBiasX_mss() ;
+      imu_cov.data[1] =IMU.getAccelBiasY_mss() ;
+      imu_cov.data[2] =IMU.getAccelBiasZ_mss() ;
     }
 
     //    imu_msg.angular_velocity.x = IMU.getGyroX_rads() ;
