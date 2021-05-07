@@ -28,6 +28,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
     FILES
     IMU_10dof.msg
+    wheel.msg
 )
 find_package( roscpp REQUIRED)
 find_package( std_msgs REQUIRED)
@@ -87,6 +88,9 @@ add_library(
     src/amr_IMU_10dof_common.cpp
     src/amr_msg_IMU_10dof_publisher.cpp
     src/amr_msg_IMU_10dof_subscriber.cpp
+    src/amr_wheel_common.cpp
+    src/amr_msg_wheel_publisher.cpp
+    src/amr_msg_wheel_subscriber.cpp
 )
 target_include_directories(amr_matlab PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -124,5 +128,5 @@ install(
   RUNTIME DESTINATION bin
 )
 install (DIRECTORY m/ DESTINATION m/ FILES_MATCHING PATTERN "*.m")
-# Generated 11-Nov-2020 01:25:57
+# Generated 07-May-2021 04:28:08
 # Copyright 2019-2020 The MathWorks, Inc.

@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/amr/msg/IMU_10dof.msg"
+messages_str = "/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/amr/msg/IMU_10dof.msg;/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/amr/msg/wheel.msg"
 services_str = ""
 pkg_name = "amr"
 dependencies_str = "std_msgs;std_msgs"

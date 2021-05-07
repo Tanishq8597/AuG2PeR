@@ -1,0 +1,223 @@
+[0/1] Re-running CMake...
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Deprecation Warning at CMakeLists.txt:4 (cmake_minimum_required):
+  Compatibility with CMake < 2.8.12 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Using CATKIN_DEVEL_PREFIX: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel
+-- Using CMAKE_PREFIX_PATH: /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1;/usr/local/MATLAB/R2020b/toolbox/ros/mlroscpp/custom_messages
+-- This workspace overlays: /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1;/usr/local/MATLAB/R2020b/toolbox/ros/mlroscpp/custom_messages
+-- Using PYTHON_EXECUTABLE: /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2
+-- Using Debian Python package layout
+-- Using empy: /usr/bin/empy
+-- Using CATKIN_ENABLE_TESTING: off
+-- catkin 0.7.17
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 3 packages in topological order:
+-- ~~  - amr
+-- ~~  - ros_decawave
+-- ~~  - rplidar_ros
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'amr'
+-- ==> add_subdirectory(amr)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- amr: 2 messages, 0 services
+-- +++ processing catkin package: 'ros_decawave'
+-- ==> add_subdirectory(ros_decawave)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- ros_decawave: 4 messages, 0 services
+-- +++ processing catkin package: 'rplidar_ros'
+-- ==> add_subdirectory(rplidar_ros)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- rplidar_ros: 0 messages, 1 services
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build
+ninja: no work to do.
+[1/8] cd /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/ros_decawave && /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py ros_decawave /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/ros_decawave/msg/AnchorArray.msg ros_decawave/Anchor:std_msgs/Header
+[2/8] cd /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/amr && /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py amr /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/amr/msg/wheel.msg std_msgs/Header
+[3/8] cd /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/ros_decawave && /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py ros_decawave /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/ros_decawave/msg/Tag.msg std_msgs/Header
+[4/8] cd /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/ros_decawave && /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py ros_decawave /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/ros_decawave/msg/Acc.msg std_msgs/Header
+[5/8] cd /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/amr && /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py amr /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/amr/msg/IMU_10dof.msg std_msgs/Header
+[6/8] cd /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/ros_decawave && /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py ros_decawave /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/ros_decawave/msg/Anchor.msg std_msgs/Header
+[7/8] cd /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/rplidar_ros && /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/tanishqjain/.matlab/R2020b/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2020b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py rplidar_ros /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src/rplidar_ros/srv/StartMotor.srv std_msgs/UInt16
+[7/8] Install the project...
+-- Install configuration: "Release"
+-- Installing: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/_setup_util.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/env.sh
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/setup.bash
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/local_setup.bash
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/setup.sh
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/local_setup.sh
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/setup.zsh
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/local_setup.zsh
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/.rosinstall
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/amr/msg/IMU_10dof.msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/amr/msg/wheel.msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/amr/cmake/amr-msg-paths.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/amr
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/amr/IMU_10dof.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/amr/wheel.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/amr/grove_10dof.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/amr/odrive.h
+Listing /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/amr ...
+Listing /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/amr/msg ...
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/__init__.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/__init__.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_IMU_10dof.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_odrive.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/__init__.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_wheel.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_grove_10dof.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_grove_10dof.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_wheel.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_odrive.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/msg/_IMU_10dof.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/amr/__init__.pyc
+-- Installing: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/amr.pc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/amr/cmake/amr-msg-extras.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/amr/cmake/amrConfig.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/amr/cmake/amrConfig-version.cmake
+-- Installing: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/amr/package.xml
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/amr
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/amr/visibility_control.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/libamr_matlab.so
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+amr
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+amr/odrive.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+amr/wheel.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+amr/grove_10dof.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+amr/iMU_10dof.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+amr
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+amr/IMU_10dof.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+amr/odrive.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+amr/wheel.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+amr/grove_10dof.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/msg/Acc.msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/msg/Anchor.msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/msg/AnchorArray.msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/msg/Tag.msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/cmake/ros_decawave-msg-paths.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/ros_decawave
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/ros_decawave/Anchor.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/ros_decawave/Acc.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/ros_decawave/AnchorArray.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/ros_decawave/Tag.h
+Listing /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/ros_decawave ...
+Listing /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/ros_decawave/msg ...
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/__init__.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/__init__.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/__init__.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_Acc.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_Anchor.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_Anchor.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_AnchorArray.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_Acc.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_AnchorArray.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_Tag.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/msg/_Tag.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/ros_decawave/__init__.pyc
+-- Installing: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/ros_decawave.pc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/cmake/ros_decawave-msg-extras.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/cmake/ros_decawaveConfig.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/cmake/ros_decawaveConfig-version.cmake
+-- Installing: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/ros_decawave/package.xml
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/ros_decawave
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/ros_decawave/visibility_control.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/libros_decawave_matlab.so
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+ros_decawave
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+ros_decawave/tag.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+ros_decawave/anchorArray.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+ros_decawave/anchor.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+ros_decawave/acc.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+ros_decawave
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+ros_decawave/Acc.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+ros_decawave/Tag.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+ros_decawave/Anchor.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+ros_decawave/AnchorArray.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/rplidar_ros/srv/StartMotor.srv
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/rplidar_ros/cmake/rplidar_ros-msg-paths.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/rplidar_ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/rplidar_ros/StartMotor.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/rplidar_ros/StartMotorRequest.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/rplidar_ros/StartMotorResponse.h
+Listing /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/rplidar_ros ...
+Listing /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/rplidar_ros/srv ...
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros/__init__.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros/__init__.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros/srv
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros/srv/_StartMotor.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros/srv/__init__.py
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros/srv/__init__.pyc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/rplidar_ros/srv/_StartMotor.pyc
+-- Installing: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/rplidar_ros.pc
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/rplidar_ros/cmake/rplidar_ros-msg-extras.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/rplidar_ros/cmake/rplidar_rosConfig.cmake
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/rplidar_ros/cmake/rplidar_rosConfig-version.cmake
+-- Installing: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/share/rplidar_ros/package.xml
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/rplidar_ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/include/rplidar_ros/visibility_control.h
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/lib/librplidar_ros_matlab.so
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+rplidar_ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+rplidar_ros/startMotorRequest.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+rplidar_ros/startMotorResponse.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+rplidar_ros
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+rplidar_ros/StartMotorRequest.m
+-- Up-to-date: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+rplidar_ros/StartMotorResponse.m
+Base path: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64
+Source space: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/src
+Build space: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build
+Devel space: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/devel
+Install space: /home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/install
+####
+#### Running command: "ninja build.ninja" in "/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build"
+####
+####
+#### Running command: "ninja install install -j12 -l12" in "/home/tanishqjain/catkin_ws/src/aug2per/matlab_msg_gen_ros1/glnxa64/build"
+####
