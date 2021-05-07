@@ -1,6 +1,7 @@
 #include <ros.h>
 #include <ros/time.h>
 #include <std_msgs/Float64MultiArray.h>
+#include <std_msgs/MultiArrayDimension.h>
 #include <std_msgs/Header.h>
 //#include <sensor_msgs/Imu.h>
 //#include <sensor_msgs/MagneticField.h>
@@ -36,6 +37,14 @@ void setup()
   IMU_node.advertise(IMU_cov_pub);
   IMU_node.advertise(IMU_time_pub);
   set_IMU();
+
+  imu.layout.dim.push_back(std_msgs::MultiArrayDimension());
+  imu.layout.dim[0].size = 9
+  imu.layout.dim[0].stride=1;
+
+  imu_cov.layout.dim.push_back(std_msgs::MultiArrayDimension());
+  imu_cov.layout.dim[0].size = 9
+  imu_cov.layout.dim[0].stride=1;
 }
 
 void set_IMU()
@@ -94,9 +103,9 @@ void loop()
     //    imu_msg.linear_acceleration.y = IMU.getAccelY_mss() ;
     //    imu_msg.linear_acceleration.z = IMU.getAccelZ_mss() ;
 
-    imu.data[0] = IMU.getAccelX_mss() ;
-    imu.data[1] = IMU.getAccelY_mss() ;
-    imu.data[2] = IMU.getAccelZ_mss() ;
+    imu.data.push_back(IMU.getAccelX_mss()) ;
+    imu.data.push_back(IMU.getAccelY_mss()) ;
+    imu.data.push_back(IMU.getAccelZ_mss()) ;
 
     if (accel > 0)
     {
@@ -104,49 +113,49 @@ void loop()
       //      imu_msg.linear_acceleration_covariance[4] = IMU.getAccelBiasY_mss() ;
       //      imu_msg.linear_acceleration_covariance[8] = IMU.getAccelBiasZ_mss() ;
 
-      imu_cov.data[0] = IMU.getAccelBiasX_mss() ;
-      imu_cov.data[1] = IMU.getAccelBiasY_mss() ;
-      imu_cov.data[2] = IMU.getAccelBiasZ_mss() ;
+      imu_cov.data.push_back(IMU.getAccelBiasX_mss()) ;
+      imu_cov.data.push_back(IMU.getAccelBiasY_mss()) ;
+      imu_cov.data.push_back(IMU.getAccelBiasZ_mss()) ;
     }
 
     //    imu_msg.angular_velocity.x = IMU.getGyroX_rads() ;
     //    imu_msg.angular_velocity.y = IMU.getGyroY_rads() ;
     //    imu_msg.angular_velocity.z = IMU.getGyroZ_rads() ;
 
-    imu.data[3] = IMU.getGyroX_rads() ;
-    imu.data[4] = IMU.getGyroY_rads() ;
-    imu.data[5] = IMU.getGyroZ_rads() ;
-
-    if (gyro > 0)
-    {
-      //      imu_msg.angular_velocity_covariance[0] = -0.003671223996207118 ;
-      //      imu_msg.angular_velocity_covariance[4] = -0.03246975317597389 ;
-      //      imu_msg.angular_velocity_covariance[8] = -0.015176254324615002 ;
-
-      imu_cov.data[3] = -0.003671223996207118 ;
-      imu_cov.data[4] = -0.03246975317597389 ;
-      imu_cov.data[5] = -0.015176254324615002 ;
-    }
-
-    //    mag_msg.magnetic_field.x = IMU.getMagX_uT();
-    //    mag_msg.magnetic_field.y = IMU.getMagY_uT();
-    //    mag_msg.magnetic_field.z = IMU.getMagZ_uT();
-
-    imu.data[6] = IMU.getMagX_uT();
-    imu.data[7] = IMU.getMagY_uT();
-    imu.data[8] = IMU.getMagZ_uT();
-
-
-    if (mag > 0)
-    {
-      //      mag_msg.magnetic_field_covariance[0] = IMU.getMagBiasX_uT();
-      //      mag_msg.magnetic_field_covariance[4] = IMU.getMagBiasY_uT() ;
-      //      mag_msg.magnetic_field_covariance[8] = IMU.getMagBiasZ_uT() ;
-
-      imu_cov.data[6] = IMU.getMagBiasX_uT();
-      imu_cov.data[7] = IMU.getMagBiasY_uT() ;
-      imu_cov.data[8] = IMU.getMagBiasZ_uT() ;
-    }
+//    imu.data[3] = IMU.getGyroX_rads() ;
+//    imu.data[4] = IMU.getGyroY_rads() ;
+//    imu.data[5] = IMU.getGyroZ_rads() ;
+//
+//    if (gyro > 0)
+//    {
+//      //      imu_msg.angular_velocity_covariance[0] = -0.003671223996207118 ;
+//      //      imu_msg.angular_velocity_covariance[4] = -0.03246975317597389 ;
+//      //      imu_msg.angular_velocity_covariance[8] = -0.015176254324615002 ;
+//
+//      imu_cov.data[3] = -0.003671223996207118 ;
+//      imu_cov.data[4] = -0.03246975317597389 ;
+//      imu_cov.data[5] = -0.015176254324615002 ;
+//    }
+//
+//    //    mag_msg.magnetic_field.x = IMU.getMagX_uT();
+//    //    mag_msg.magnetic_field.y = IMU.getMagY_uT();
+//    //    mag_msg.magnetic_field.z = IMU.getMagZ_uT();
+//
+//    imu.data[6] = IMU.getMagX_uT();
+//    imu.data[7] = IMU.getMagY_uT();
+//    imu.data[8] = IMU.getMagZ_uT();
+//
+//
+//    if (mag > 0)
+//    {
+//      //      mag_msg.magnetic_field_covariance[0] = IMU.getMagBiasX_uT();
+//      //      mag_msg.magnetic_field_covariance[4] = IMU.getMagBiasY_uT() ;
+//      //      mag_msg.magnetic_field_covariance[8] = IMU.getMagBiasZ_uT() ;
+//
+//      imu_cov.data[6] = IMU.getMagBiasX_uT();
+//      imu_cov.data[7] = IMU.getMagBiasY_uT() ;
+//      imu_cov.data[8] = IMU.getMagBiasZ_uT() ;
+//    }
 
     //    IMU_ag_pub.publish(&imu_msg) ;
     //    IMU_mag_pub.publish(&mag_msg) ;
